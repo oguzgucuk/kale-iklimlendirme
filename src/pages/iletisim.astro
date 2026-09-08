@@ -1,9 +1,14 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro';
 import company from '@/data_files/company.json';
+import { ContactForm } from '@/components/ui/ContactForm';
 import { getCollection } from 'astro:content';
 
-const services = await getCollection('services');
+const rawServices = await getCollection('services');
+const serviceOptions = rawServices.map((s) => ({
+  id: s.id,
+  title: s.data.title,
+}));
 ---
 
 <MainLayout
@@ -136,7 +141,7 @@ const services = await getCollection('services');
 
         </aside>
 
-        <!-- Lead Generation Form (7 cols on lg) -->
+        <!-- Lead Generation Form Container (7 cols on lg) -->
         <main class="lg:col-span-7 bg-white rounded-2xl p-6 sm:p-10 border border-gray-200 shadow-sm">
           <header class="mb-6">
             <h2 class="text-2xl font-bold text-navy-900">Ücretsiz Keşif & Teklif Formu</h2>
@@ -145,90 +150,45 @@ const services = await getCollection('services');
             </p>
           </header>
 
-          <form action="#" method="POST" class="space-y-4">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label for="name" class="block text-xs font-semibold text-navy-900 mb-1.5">
-                  Adınız Soyadınız <span class="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm focus:border-brand-500 focus:ring-brand-500"
-                  placeholder="Örn: Ahmet Yılmaz"
-                />
-              </div>
-              <div>
-                <label for="phone" class="block text-xs font-semibold text-navy-900 mb-1.5">
-                  Telefon Numaranız <span class="text-red-500">*</span>
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  required
-                  class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm focus:border-brand-500 focus:ring-brand-500"
-                  placeholder="05XX XXX XX XX"
-                />
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label for="email" class="block text-xs font-semibold text-navy-900 mb-1.5">
-                  E-Posta Adresiniz (Opsiyonel)
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm focus:border-brand-500 focus:ring-brand-500"
-                  placeholder="ornek@firma.com"
-                />
-              </div>
-
-              <div>
-                <label for="service" class="block text-xs font-semibold text-navy-900 mb-1.5">
-                  İlgilendiğiniz Hizmet <span class="text-red-500">*</span>
-                </label>
-                <select
-                  id="service"
-                  name="service"
-                  required
-                  class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm focus:border-brand-500 focus:ring-brand-500 bg-white"
-                >
-                  <option value="">Lütfen seçiniz</option>
-                  {services.map((s) => (
-                    <option value={s.id}>{s.data.title}</option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div>
-              <label for="message" class="block text-xs font-semibold text-navy-900 mb-1.5">
-                Proje / Mekan Detayları
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                rows="4"
-                class="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm focus:border-brand-500 focus:ring-brand-500"
-                placeholder="Mekan türü (ev, ofis, otel, fabrika), yaklaşık m² veya arıza detayını belirtiniz..."
-              ></textarea>
-            </div>
-
-            <button
-              type="submit"
-              class="w-full py-3.5 px-6 text-sm font-bold text-white bg-brand-500 hover:bg-brand-600 rounded-xl shadow-md transition-all text-center hover:-translate-y-0.5 focus:ring-4 focus:ring-brand-500/40"
-            >
-              Ücretsiz Keşif Talebini Gönder
-            </button>
-          </form>
+          <!-- Interactive Contact Form Component -->
+          <ContactForm
+            services={serviceOptions}
+            whatsappRaw={company.whatsappRaw}
+            client:load
+          />
         </main>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Google Maps Embed Section -->
+  <section class="py-14 sm:py-16 bg-white border-t border-gray-200" aria-label="Merkez Ofis Haritası">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <header class="mb-8 max-w-2xl">
+        <span class="text-xs font-bold text-brand-600 uppercase tracking-widest block">
+          Lokasyon & Ulaşım
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-900 mt-1.5">
+          Merkez Ofisimize Ulaşım
+        </h2>
+        <p class="text-sm text-gray-600 mt-1.5">
+          Kağıthane merkez ofisimizde projenizi yüz yüze değerlendirmek için randevu alabilirsiniz.
+        </p>
+      </header>
+
+      <div class="rounded-2xl overflow-hidden border border-gray-200 shadow-sm h-[360px] sm:h-[420px] w-full bg-surface">
+        <iframe
+          title="Kale İklimlendirme Kağıthane İstanbul Ofis Konumu"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48123.46820256247!2d28.948293999999997!3d41.0858175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab6e31b65e751%3A0xea0e0e37b67b1b36!2zS2HEn8SxdGhhbmUvScSzdGFuYnVs!5e0!3m2!1str!2str!4v1700000000000!5m2!1str!2str"
+          width="100%"
+          height="100%"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          class="w-full h-full"
+        ></iframe>
       </div>
     </div>
   </section>
