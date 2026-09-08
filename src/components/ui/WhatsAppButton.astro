@@ -1,0 +1,42 @@
+---
+import company from '@/data_files/company.json';
+
+interface Props {
+  customMessage?: string;
+}
+
+const { customMessage } = Astro.props;
+const message = encodeURIComponent(customMessage || company.defaultWhatsAppMessage);
+const whatsappUrl = `https://wa.me/${company.whatsappRaw}?text=${message}`;
+---
+
+<aside aria-label="Hızlı WhatsApp İletişim">
+  <a
+    href={whatsappUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    id="whatsapp-floating-btn"
+    class="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 bg-[#25D366] hover:bg-[#20bd5a] text-white px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5 group focus:outline-none focus:ring-4 focus:ring-[#25D366]/40"
+    aria-label="WhatsApp üzerinden mesaj gönderin"
+  >
+    <!-- WhatsApp SVG Icon -->
+    <svg
+      class="w-6 h-6 fill-current"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.599 2.674-.7c.976.58 2.019.882 3.209.882h.001c3.179 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.768-5.767-5.768zm3.366 8.163c-.141.397-.714.729-1.026.776-.29.043-.654.072-2.12-.533-1.875-.776-3.08-2.697-3.174-2.82-.093-.124-.764-1.018-.764-1.942 0-.923.483-1.378.654-1.564.171-.186.374-.233.499-.233.124 0 .249.002.358.007.115.006.269-.044.421.323.157.38.537 1.309.584 1.405.047.096.078.209.016.333-.063.125-.094.202-.187.311-.093.11-.197.246-.281.33-.094.094-.192.197-.082.386.11.189.489.808 1.05 1.307.722.643 1.33.842 1.519.935.188.094.3.078.411-.047.112-.125.48-559.608-.751.127-.192.256-.16.429-.096.173.064 1.096.517 1.284.611.188.094.313.141.359.219.047.078.047.452-.094.849zM12 2C6.477 2 2 6.477 2 12c0 1.891.526 3.66 1.438 5.176L2 22l4.982-1.397A9.957 9.957 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/>
+    </svg>
+
+    <span class="font-medium text-sm hidden sm:inline-block pr-1 tracking-wide">
+      WhatsApp Danışma
+    </span>
+
+    <!-- Status dot (Online / 7/24) -->
+    <span class="relative flex h-2.5 w-2.5">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-200"></span>
+    </span>
+  </a>
+</aside>

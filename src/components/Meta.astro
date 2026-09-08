@@ -1,0 +1,89 @@
+---
+import company from '@/data_files/company.json';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  structuredData?: object;
+}
+
+const {
+  title = `${company.companyName} | VRF Merkezi Sistemler & Klima Satış Servis`,
+  description = company.description,
+  ogImage = '/images/brand/og-image.jpg',
+  structuredData,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://kaleiklimlendirme.com');
+
+// Default HVACBusiness Structured Data (JSON-LD) for Local SEO
+const defaultLocalBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HVACBusiness',
+  name: company.companyName,
+  legalName: company.legalName,
+  description: company.description,
+  telephone: company.phone,
+  email: company.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: company.address.street,
+    addressLocality: company.address.district,
+    addressRegion: company.address.city,
+    postalCode: company.address.postalCode,
+    addressCountry: 'TR',
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '08:30',
+      closes: '18:30',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Saturday'],
+      opens: '09:00',
+      closes: '16:00',
+    },
+  ],
+  areaServed: company.areaServed.map((area) => ({
+    '@type': 'AdministrativeArea',
+    name: area,
+  })),
+};
+
+const jsonLd = structuredData || defaultLocalBusinessSchema;
+---
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#101828" />
+<meta name="generator" content={Astro.generator} />
+
+<link rel="canonical" href={canonicalURL} />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImage} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalURL} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={ogImage} />
+
+<!-- Structured Data (JSON-LD) -->
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

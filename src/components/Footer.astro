@@ -1,0 +1,137 @@
+---
+import company from '@/data_files/company.json';
+import { footerLinks } from '@/utils/navigation';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-navy-900 text-gray-300 pt-16 pb-12 border-t border-navy-950">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-gray-800">
+      
+      <!-- Company Brand & Intro (Cols 1-2) -->
+      <div class="lg:col-span-2 space-y-4">
+        <a href="/" class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-lg bg-brand-500 flex items-center justify-center text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
+              <circle cx="12" cy="12" r="3" stroke-width="2" />
+            </svg>
+          </div>
+          <div>
+            <span class="text-xl font-bold text-white tracking-tight">KALE İKLİMLENDİRME</span>
+            <div class="text-xs text-brand-400 font-medium">Mühendislik & İklimlendirme Teknolojileri</div>
+          </div>
+        </a>
+
+        <p class="text-sm text-gray-400 max-w-sm leading-relaxed">
+          {company.description}
+        </p>
+
+        <!-- Authorized Brands Badges -->
+        <div class="pt-2">
+          <div class="text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">
+            Çözüm Ortakları & Markalar
+          </div>
+          <div class="flex flex-wrap gap-1.5">
+            {company.authorizedBrands.map((brand) => (
+              <span class="inline-flex items-center px-2.5 py-1 rounded bg-navy-950 text-[11px] font-medium text-gray-300 border border-gray-800">
+                {brand}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Services Links -->
+      <div>
+        <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">
+          Hizmetlerimiz
+        </h3>
+        <ul class="space-y-2.5 text-sm">
+          {footerLinks.services.map((link) => (
+            <li>
+              <a href={link.url} class="hover:text-brand-400 transition-colors">
+                {link.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Company Links -->
+      <div>
+        <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">
+          Kurumsal
+        </h3>
+        <ul class="space-y-2.5 text-sm">
+          {footerLinks.company.map((link) => (
+            <li>
+              <a href={link.url} class="hover:text-brand-400 transition-colors">
+                {link.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Direct Contact Column -->
+      <div>
+        <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">
+          İletişim & Destek
+        </h3>
+        <ul class="space-y-3 text-sm">
+          <li class="flex items-start gap-2.5">
+            <svg class="w-4 h-4 text-brand-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            <a href={`tel:${company.phoneRaw}`} class="hover:text-white font-medium">
+              {company.phone}
+            </a>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <svg class="w-4 h-4 text-alert mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            <div>
+              <div class="text-xs text-gray-400">7/24 Acil Arıza:</div>
+              <a href={`tel:${company.emergencyPhoneRaw}`} class="hover:text-white font-medium text-alert">
+                {company.emergencyPhone}
+              </a>
+            </div>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <svg class="w-4 h-4 text-brand-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            <a href={`mailto:${company.email}`} class="hover:text-white truncate">
+              {company.email}
+            </a>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <svg class="w-4 h-4 text-brand-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <span class="text-gray-400 text-xs leading-relaxed">
+              {footerLinks.contact.address}
+            </span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom Copyright & Legal -->
+    <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-500 gap-4">
+      <p>
+        &copy; {currentYear} {company.legalName}. Tüm hakları saklıdır.
+      </p>
+      <div class="flex items-center gap-6">
+        <span class="hover:text-gray-400">Gizlilik Politikası</span>
+        <span>•</span>
+        <span class="hover:text-gray-400">KVKK Aydınlatma Metni</span>
+      </div>
+    </div>
+  </div>
+</footer>

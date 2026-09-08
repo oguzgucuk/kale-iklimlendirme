@@ -1,0 +1,56 @@
+---
+import '@/assets/styles/global.css';
+import Meta from '@/components/Meta.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import WhatsAppButton from '@/components/ui/WhatsAppButton.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  structuredData?: object;
+  customWhatsAppMessage?: string;
+}
+
+const { title, description, ogImage, structuredData, customWhatsAppMessage } = Astro.props;
+---
+
+<!doctype html>
+<html lang="tr" class="h-full antialiased scroll-smooth">
+  <head>
+    <Meta
+      title={title}
+      description={description}
+      ogImage={ogImage}
+      structuredData={structuredData}
+    />
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="flex min-h-full flex-col bg-surface text-navy-900 font-sans selection:bg-brand-500 selection:text-white">
+    <!-- Header Navigation -->
+    <Header />
+
+    <!-- Main Content Area -->
+    <main id="main-content" class="flex-grow">
+      <slot />
+    </main>
+
+    <!-- Global Floating WhatsApp CTA Button -->
+    <WhatsAppButton customMessage={customWhatsAppMessage} />
+
+    <!-- Global Footer -->
+    <Footer />
+
+    <!-- Preline UI JavaScript Initialization -->
+    <script>
+      import 'preline/preline';
+    </script>
+  </body>
+</html>

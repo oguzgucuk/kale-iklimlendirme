@@ -1,0 +1,52 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import company from '@/data_files/company.json';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+---
+
+<MainLayout
+  title={`Projelerimiz & Referanslar | ${company.companyName}`}
+  description="Tamamlanan VRF merkezi sistem uygulamaları, iş merkezleri, otel ve endüstriyel iklimlendirme referanslarımız."
+>
+  <div class="bg-navy-900 text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="text-xs font-bold text-brand-400 uppercase tracking-widest">Referanslarımız</span>
+      <h1 class="text-3xl sm:text-5xl font-extrabold mt-2">Tamamlanan Projeler</h1>
+      <p class="text-gray-300 text-base max-w-2xl mt-3">
+        Farklı ölçekteki yapılarda başarıyla devreye aldığımız VRF merkezi sistem ve ticari klima uygulamalarımız.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {projects.map((project) => (
+        <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-xs text-gray-500 mb-3">
+              <span class="font-semibold text-brand-700 bg-brand-50 px-2.5 py-1 rounded">
+                {project.data.client}
+              </span>
+              <span>{project.data.location}</span>
+            </div>
+            <h2 class="text-2xl font-bold text-navy-900">{project.data.title}</h2>
+            <p class="text-gray-600 mt-3 leading-relaxed">{project.data.summary}</p>
+          </div>
+          <div class="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between">
+            <span class="text-xs font-medium text-gray-500">
+              Sistem Tipi: <strong class="text-navy-900">{project.data.systemType}</strong>
+            </span>
+            <a
+              href={`/projeler/${project.id}`}
+              class="inline-flex items-center gap-1 font-bold text-sm text-brand-600 hover:text-brand-700"
+            >
+              Detay &rarr;
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</MainLayout>

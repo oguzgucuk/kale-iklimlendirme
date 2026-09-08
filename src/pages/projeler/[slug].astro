@@ -1,0 +1,72 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import company from '@/data_files/company.json';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<MainLayout
+  title={`${project.data.title} | ${company.companyName}`}
+  description={project.data.summary}
+>
+  <div class="bg-navy-900 text-white py-14 border-b border-navy-950">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-xs text-gray-400 mb-4">
+        <a href="/" class="hover:text-white">Ana Sayfa</a>
+        <span>/</span>
+        <a href="/projeler" class="hover:text-white">Projelerimiz</a>
+        <span>/</span>
+        <span class="text-brand-400 font-medium">{project.data.title}</span>
+      </nav>
+      <div class="flex items-center gap-3 text-xs text-brand-300 mb-2">
+        <span class="bg-navy-950 px-2.5 py-1 rounded border border-gray-700">{project.data.client}</span>
+        <span>•</span>
+        <span>{project.data.location}</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+        {project.data.title}
+      </h1>
+      <p class="text-gray-300 text-base mt-3 leading-relaxed">
+        {project.data.summary}
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="bg-surface rounded-xl p-5 border border-gray-200 mb-8 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+      <div>
+        <span class="text-gray-500 block text-xs">Uygulanan Sistem:</span>
+        <strong class="text-navy-900 font-bold">{project.data.systemType}</strong>
+      </div>
+      <div>
+        <span class="text-gray-500 block text-xs">Teslim Tarihi:</span>
+        <strong class="text-navy-900 font-bold">
+          {new Date(project.data.completedDate).toLocaleDateString('tr-TR', { year: 'numeric', month: 'long' })}
+        </strong>
+      </div>
+    </div>
+
+    <article class="prose prose-lg prose-slate max-w-none prose-headings:font-bold prose-headings:text-navy-900">
+      <Content />
+    </article>
+
+    <div class="mt-12 pt-8 border-t border-gray-200 flex justify-between items-center">
+      <a href="/projeler" class="text-sm font-bold text-navy-900 hover:text-brand-600 flex items-center gap-1">
+        &larr; Tüm Projelere Dön
+      </a>
+      <a href="/iletisim" class="px-5 py-2.5 bg-brand-500 text-white rounded-lg text-sm font-bold hover:bg-brand-600">
+        Benzer Bir Proje Başlatın
+      </a>
+    </div>
+  </div>
+</MainLayout>

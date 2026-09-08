@@ -1,0 +1,45 @@
+{
+  "companyName": "Kale İklimlendirme",
+  "legalName": "Kale İklimlendirme ve Havalandırma Sistemleri San. Tic. Ltd. Şti.",
+  "slogan": "VRF Merkezi Sistemler ve Kurumsal İklimlendirme Çözümleri",
+  "description": "Klima satışı, VRF merkezi sistem projelendirme, profesyonel periyodik bakım, arıza onarım ve altyapı tesisat mühendisliği.",
+  "phone": "+90 212 555 01 23",
+  "phoneRaw": "+902125550123",
+  "emergencyPhone": "+90 532 555 01 99",
+  "emergencyPhoneRaw": "+905325550199",
+  "whatsappNumber": "+90 532 555 01 99",
+  "whatsappRaw": "905325550199",
+  "defaultWhatsAppMessage": "Merhaba, klima hizmetleriniz ve VRF projelendirme hakkında bilgi ve keşif talep etmek istiyorum.",
+  "email": "info@kaleiklimlendirme.com",
+  "address": {
+    "street": "Mühendisler Cad. No: 42, Sanayi Mah.",
+    "district": "Kağıthane",
+    "city": "İstanbul",
+    "postalCode": "34418",
+    "country": "Türkiye"
+  },
+  "workingHours": {
+    "weekdays": "08:30 - 18:30",
+    "saturday": "09:00 - 16:00",
+    "sunday": "Acil Servis & Nöbetçi Ekip",
+    "support": "7/24 Acil Müdahale"
+  },
+  "areaServed": [
+    "İstanbul (Avrupa ve Anadolu)",
+    "Kocaeli",
+    "Tekirdağ",
+    "Bursa"
+  ],
+  "socialMedia": {
+    "instagram": "https://instagram.com/kaleiklimlendirme",
+    "linkedin": "https://linkedin.com/company/kaleiklimlendirme",
+    "facebook": "https://facebook.com/kaleiklimlendirme"
+  },
+  "authorizedBrands": [
+    "Daikin",
+    "Mitsubishi Electric",
+    "VRV / VRF Çözüm Ortağı",
+    "LG Multi V",
+    "Toshiba SMMS"
+  ]
+}

@@ -1,0 +1,33 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import company from '@/data_files/company.json';
+---
+
+<MainLayout
+  title={`Sayfa Bulunamadı (404) | ${company.companyName}`}
+  description="Aradığınız sayfa silinmiş veya taşınmış olabilir."
+>
+  <div class="min-h-[60vh] flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md text-center space-y-6">
+      <div class="text-7xl font-extrabold text-brand-500">404</div>
+      <h1 class="text-2xl font-bold text-navy-900">Sayfa Bulunamadı</h1>
+      <p class="text-sm text-gray-600 leading-relaxed">
+        Aradığınız sayfa adresi değiştirilmiş veya kaldırılmış olabilir. Ana sayfaya dönebilir veya doğrudan müşteri temsilcimizle iletişime geçebilirsiniz.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-3">
+        <a
+          href="/"
+          class="px-6 py-3 text-sm font-bold text-white bg-navy-900 hover:bg-navy-950 rounded-xl transition-all"
+        >
+          Ana Sayfaya Dön
+        </a>
+        <a
+          href="/iletisim"
+          class="px-6 py-3 text-sm font-bold text-brand-700 bg-brand-50 hover:bg-brand-100 rounded-xl transition-all"
+        >
+          Bize Ulaşın
+        </a>
+      </div>
+    </div>
+  </div>
+</MainLayout>

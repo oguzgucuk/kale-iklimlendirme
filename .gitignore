@@ -1,0 +1,22 @@
+# Build & output directories
+dist/
+.astro/
+
+# Dependency directories
+node_modules/
+
+# Environment variables
+.env
+.env.production
+.env.local
+*.env
+
+# Vercel
+.vercel/
+
+# OS and IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log

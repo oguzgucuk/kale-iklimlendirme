@@ -1,0 +1,69 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import company from '@/data_files/company.json';
+---
+
+<MainLayout
+  title={`Hakkımızda | ${company.companyName}`}
+  description="Kale İklimlendirme; VRF merkezi sistemler, ticari klima satışı ve mühendislik hizmetlerinde 15 yılı aşkın deneyim."
+>
+  <div class="bg-navy-900 text-white py-16 border-b border-navy-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="text-xs font-bold text-brand-400 uppercase tracking-widest">Kurumsal</span>
+      <h1 class="text-3xl sm:text-5xl font-extrabold mt-2">Mühendislik ve Güven</h1>
+      <p class="text-gray-300 text-base max-w-2xl mt-3">
+        15 yılı aşkın tecrübemizle iklimlendirme sektöründe standartları belirliyoruz.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+    
+    <!-- Story -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div class="space-y-4 text-gray-700 leading-relaxed">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-900">
+          Doğru Projelendirme, Kusursuz Konfor
+        </h2>
+        <p>
+          Kale İklimlendirme olarak yola çıktığımız ilk günden itibaren felsefemiz yalnızca klima satmak değil; 
+          her yapının mimari karakterine, yönüne ve kullanım amacına en uygun termal konforu tasarlamak olmuştur.
+        </p>
+        <p>
+          Bireysel split klimalardan başlayarak yüzlerce odalı otel komplekslerine, fabrikalara ve plazalara kadar 
+          VRF merkezi sistem projelendirmesinde uzman mühendis ve sertifikalı teknisyen kadromuzla hizmet veriyoruz.
+        </p>
+      </div>
+
+      <div class="bg-surface rounded-2xl p-8 border border-gray-200 space-y-6">
+        <div class="border-l-4 border-brand-500 pl-4">
+          <div class="text-3xl font-extrabold text-navy-900">15+</div>
+          <div class="text-sm text-gray-600 font-medium">Yıllık Sektör Deneyimi</div>
+        </div>
+        <div class="border-l-4 border-brand-500 pl-4">
+          <div class="text-3xl font-extrabold text-navy-900">450+</div>
+          <div class="text-sm text-gray-600 font-medium">Başarıyla Teslim Edilen VRF & Ticari Proje</div>
+        </div>
+        <div class="border-l-4 border-brand-500 pl-4">
+          <div class="text-3xl font-extrabold text-navy-900">%100</div>
+          <div class="text-sm text-gray-600 font-medium">Mühendislik Garantisi & Orijinal Parça</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Authorized Brands -->
+    <div id="markalar" class="pt-8 border-t border-gray-200">
+      <h3 class="text-xl font-bold text-navy-900 mb-6">
+        Yetkili Marka & Çözüm Ortaklıklarımız
+      </h3>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+        {company.authorizedBrands.map((brand) => (
+          <div class="bg-white border border-gray-200 rounded-xl p-5 text-center font-bold text-navy-900 shadow-sm flex items-center justify-center">
+            {brand}
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</MainLayout>
