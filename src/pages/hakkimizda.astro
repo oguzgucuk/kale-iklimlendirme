@@ -1,69 +1,161 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro';
 import company from '@/data_files/company.json';
+import CtaBanner from '@/components/sections/CtaBanner.astro';
+
+const standards = [
+  {
+    title: '40 Bar Kuru Azot Testi',
+    description: 'Sıva ve asma tavan kapanmadan önce bakır boru hatlarına 40 bar basınç uygulanarak manometre ile sızdırmazlık mühürlenir.',
+  },
+  {
+    title: 'Derin Vakum Prosedürü',
+    description: 'Tesisattaki nem ve hava 500 mikron seviyesine kadar tahliye edilerek asit oluşumu ve kompresör arızası engellenir.',
+  },
+  {
+    title: 'Dijital Terazi ile Hassas Gaz Şarjı',
+    description: 'Boru mesafelerine göre ilave soğutucu akışkan (R32 / R410A) gramaj hesabı hassas dijital terazilerle doldurulur.',
+  },
+  {
+    title: 'TSE & Marka Bayilik Güvencesi',
+    description: 'Tüm montaj ve bakım operasyonları Daikin, Mitsubishi Electric gibi lider üreticilerin resmi prosedürlerine tam uyumludur.',
+  },
+];
 ---
 
 <MainLayout
-  title={`Hakkımızda | ${company.companyName}`}
+  title={`Hakkımızda & Mühendislik Standartlarımız | ${company.companyName}`}
   description="Kale İklimlendirme; VRF merkezi sistemler, ticari klima satışı ve mühendislik hizmetlerinde 15 yılı aşkın deneyim."
 >
-  <div class="bg-navy-900 text-white py-16 border-b border-navy-950">
+  <!-- Page Header -->
+  <header class="bg-navy-900 text-white py-12 sm:py-16 border-b border-navy-950">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <span class="text-xs font-bold text-brand-400 uppercase tracking-widest">Kurumsal</span>
-      <h1 class="text-3xl sm:text-5xl font-extrabold mt-2">Mühendislik ve Güven</h1>
-      <p class="text-gray-300 text-base max-w-2xl mt-3">
-        15 yılı aşkın tecrübemizle iklimlendirme sektöründe standartları belirliyoruz.
+      
+      <!-- Semantic Breadcrumb -->
+      <nav aria-label="Erişim Yolu" class="mb-4">
+        <ol class="flex items-center gap-2 text-xs text-gray-400 list-none p-0 m-0">
+          <li>
+            <a href="/" class="hover:text-white transition-colors">Ana Sayfa</a>
+          </li>
+          <li aria-hidden="true" class="text-gray-600">/</li>
+          <li class="text-brand-400 font-semibold" aria-current="page">Hakkımızda</li>
+        </ol>
+      </nav>
+
+      <span class="text-xs font-bold text-brand-400 uppercase tracking-widest block">
+        Mühendislik & Güven
+      </span>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white mt-1.5 leading-tight">
+        Hakkımızda & Kurumsal Vizyonumuz
+      </h1>
+      <p class="text-sm sm:text-base text-gray-300 max-w-2xl mt-3 leading-relaxed">
+        15 yılı aşkın sektörel deneyimimizle yaşam alanlarına ve ticari yapılara yüksek konforlu, enerji tasarruflu iklimlendirme çözümleri sunuyoruz.
       </p>
     </div>
-  </div>
+  </header>
 
-  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
-    
-    <!-- Story -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-      <div class="space-y-4 text-gray-700 leading-relaxed">
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-900">
-          Doğru Projelendirme, Kusursuz Konfor
-        </h2>
-        <p>
-          Kale İklimlendirme olarak yola çıktığımız ilk günden itibaren felsefemiz yalnızca klima satmak değil; 
-          her yapının mimari karakterine, yönüne ve kullanım amacına en uygun termal konforu tasarlamak olmuştur.
-        </p>
-        <p>
-          Bireysel split klimalardan başlayarak yüzlerce odalı otel komplekslerine, fabrikalara ve plazalara kadar 
-          VRF merkezi sistem projelendirmesinde uzman mühendis ve sertifikalı teknisyen kadromuzla hizmet veriyoruz.
-        </p>
-      </div>
+  <!-- Story & Metrics Section -->
+  <section class="py-14 sm:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        
+        <!-- Story (7 cols) -->
+        <div class="lg:col-span-7 space-y-4 text-gray-700 leading-relaxed">
+          <span class="text-xs font-bold text-brand-600 uppercase tracking-widest block">
+            Hikayemiz & Yaklaşımımız
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-900 leading-tight">
+            Doğru Kapasite Hesabı, Kusursuz Akustik Konfor
+          </h2>
+          <p>
+            Kale İklimlendirme olarak yola çıktığımız ilk günden itibaren benimsediğimiz temel ilke: mekanlara yalnızca bir soğutma veya ısıtma cihazı yerleştirmek değil, o mekanın mimari karakterine ve insan yoğunluğuna en uygun termal iklimi tasarlamaktır.
+          </p>
+          <p>
+            Bireysel inverter split klimalardan yüzlerce odalı otel komplekslerine, plazalara ve endüstriyel tesislere kadar VRF merkezi sistem projelerinde yetkili mühendis kadromuz ve sertifikalı montaj ekiplerimizle hizmet veriyoruz.
+          </p>
+          <p>
+            İşimizin her aşamasında üretici standartlarına harfiyen bağlı kalarak, cihazların katalog verim değerlerine sahada birebir ulaşmasını sağlıyoruz.
+          </p>
+        </div>
 
-      <div class="bg-surface rounded-2xl p-8 border border-gray-200 space-y-6">
-        <div class="border-l-4 border-brand-500 pl-4">
-          <div class="text-3xl font-extrabold text-navy-900">15+</div>
-          <div class="text-sm text-gray-600 font-medium">Yıllık Sektör Deneyimi</div>
-        </div>
-        <div class="border-l-4 border-brand-500 pl-4">
-          <div class="text-3xl font-extrabold text-navy-900">450+</div>
-          <div class="text-sm text-gray-600 font-medium">Başarıyla Teslim Edilen VRF & Ticari Proje</div>
-        </div>
-        <div class="border-l-4 border-brand-500 pl-4">
-          <div class="text-3xl font-extrabold text-navy-900">%100</div>
-          <div class="text-sm text-gray-600 font-medium">Mühendislik Garantisi & Orijinal Parça</div>
-        </div>
+        <!-- Metrics List (5 cols) -->
+        <aside class="lg:col-span-5 rounded-2xl border border-gray-200 bg-surface p-6 sm:p-8 space-y-6">
+          <div class="border-l-4 border-brand-500 pl-4">
+            <div class="text-3xl font-extrabold text-navy-900 font-mono">15+ Yıl</div>
+            <div class="text-xs sm:text-sm text-gray-600 font-medium mt-0.5">Sektörel Mühendislik Deneyimi</div>
+          </div>
+          <div class="border-l-4 border-brand-500 pl-4">
+            <div class="text-3xl font-extrabold text-navy-900 font-mono">450+</div>
+            <div class="text-xs sm:text-sm text-gray-600 font-medium mt-0.5">Devreye Alınan VRF & Kurumsal Proje</div>
+          </div>
+          <div class="border-l-4 border-brand-500 pl-4">
+            <div class="text-3xl font-extrabold text-navy-900 font-mono">7/24</div>
+            <div class="text-xs sm:text-sm text-gray-600 font-medium mt-0.5">Nöbetçi Acil Servis & Müdahale</div>
+          </div>
+          <div class="border-l-4 border-brand-500 pl-4">
+            <div class="text-3xl font-extrabold text-navy-900 font-mono">%100</div>
+            <div class="text-xs sm:text-sm text-gray-600 font-medium mt-0.5">Orijinal Parça & Distribütör Güvencesi</div>
+          </div>
+        </aside>
+
       </div>
     </div>
+  </section>
 
-    <!-- Authorized Brands -->
-    <div id="markalar" class="pt-8 border-t border-gray-200">
-      <h3 class="text-xl font-bold text-navy-900 mb-6">
-        Yetkili Marka & Çözüm Ortaklıklarımız
-      </h3>
+  <!-- Technical Quality Standards -->
+  <section class="py-14 sm:py-20 bg-surface border-y border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <header class="max-w-3xl mb-10 sm:mb-12">
+        <span class="text-xs font-bold text-brand-600 uppercase tracking-widest block">
+          Kalite Güvencesi
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-900 mt-1.5 leading-tight">
+          Sahada Taviz Vermediğimiz Montaj Standartları
+        </h2>
+        <p class="text-sm sm:text-base text-gray-600 mt-2">
+          Uzun ömürlü ve arızasız bir iklimlendirme sisteminin temeli montaj kalitesidir.
+        </p>
+      </header>
+
+      <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 list-none p-0 m-0">
+        {standards.map((std, i) => (
+          <li class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+            <span class="text-2xl font-black text-brand-500 font-mono block mb-3">
+              0{i + 1}
+            </span>
+            <h3 class="text-base font-bold text-navy-900 mb-2">{std.title}</h3>
+            <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">{std.description}</p>
+          </li>
+        ))}
+      </ul>
+
+    </div>
+  </section>
+
+  <!-- Authorized Brands Section -->
+  <section id="markalar" class="py-14 sm:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <span class="text-xs font-bold text-brand-600 uppercase tracking-widest block">
+          Çözüm Ortakları
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-900 mt-1.5">
+          Yetkili Bayi & Distribütör Ortaklıklarımız
+        </h2>
+        <p class="text-sm text-gray-600 mt-2">Dünya standartlarında üretilmiş lider klima markalarıyla çalışıyoruz.</p>
+      </div>
+
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
         {company.authorizedBrands.map((brand) => (
-          <div class="bg-white border border-gray-200 rounded-xl p-5 text-center font-bold text-navy-900 shadow-sm flex items-center justify-center">
+          <div class="rounded-2xl border border-gray-200 bg-surface p-5 text-center font-bold text-navy-900 shadow-sm flex items-center justify-center hover:border-brand-500/40 transition-colors">
             {brand}
           </div>
         ))}
       </div>
     </div>
+  </section>
 
-  </div>
+  <!-- CTA Banner -->
+  <CtaBanner />
 </MainLayout>

@@ -1,6 +1,8 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro';
 import company from '@/data_files/company.json';
+import { Badge } from '@/components/ui/badge';
+import CtaBanner from '@/components/sections/CtaBanner.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -13,60 +15,95 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await render(project);
+
+const formattedDate = new Date(project.data.completedDate).toLocaleDateString('tr-TR', {
+  year: 'numeric',
+  month: 'long',
+});
 ---
 
 <MainLayout
   title={`${project.data.title} | ${company.companyName}`}
   description={project.data.summary}
 >
-  <div class="bg-navy-900 text-white py-14 border-b border-navy-950">
+  <!-- Semantic Page Header -->
+  <header class="bg-navy-900 text-white py-12 sm:py-16 border-b border-navy-950">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <nav class="flex items-center gap-2 text-xs text-gray-400 mb-4">
-        <a href="/" class="hover:text-white">Ana Sayfa</a>
-        <span>/</span>
-        <a href="/projeler" class="hover:text-white">Projelerimiz</a>
-        <span>/</span>
-        <span class="text-brand-400 font-medium">{project.data.title}</span>
+      
+      <!-- Semantic Breadcrumb -->
+      <nav aria-label="Erişim Yolu" class="mb-4">
+        <ol class="flex items-center gap-2 text-xs text-gray-400 list-none p-0 m-0">
+          <li>
+            <a href="/" class="hover:text-white transition-colors">Ana Sayfa</a>
+          </li>
+          <li aria-hidden="true" class="text-gray-600">/</li>
+          <li>
+            <a href="/projeler" class="hover:text-white transition-colors">Projelerimiz</a>
+          </li>
+          <li aria-hidden="true" class="text-gray-600">/</li>
+          <li class="text-brand-400 font-semibold" aria-current="page">{project.data.title}</li>
+        </ol>
       </nav>
-      <div class="flex items-center gap-3 text-xs text-brand-300 mb-2">
-        <span class="bg-navy-950 px-2.5 py-1 rounded border border-gray-700">{project.data.client}</span>
-        <span>•</span>
-        <span>{project.data.location}</span>
+
+      <div class="flex flex-wrap items-center gap-2.5 mb-2">
+        <Badge variant="brand" className="font-semibold">
+          {project.data.client}
+        </Badge>
+        <span class="text-xs text-gray-400">•</span>
+        <span class="text-xs font-medium text-gray-300">{project.data.location}</span>
       </div>
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white mt-1.5 leading-tight">
         {project.data.title}
       </h1>
-      <p class="text-gray-300 text-base mt-3 leading-relaxed">
+      <p class="text-sm sm:text-base text-gray-300 mt-3 leading-relaxed">
         {project.data.summary}
       </p>
     </div>
-  </div>
+  </header>
 
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <div class="bg-surface rounded-xl p-5 border border-gray-200 mb-8 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-      <div>
-        <span class="text-gray-500 block text-xs">Uygulanan Sistem:</span>
-        <strong class="text-navy-900 font-bold">{project.data.systemType}</strong>
-      </div>
-      <div>
-        <span class="text-gray-500 block text-xs">Teslim Tarihi:</span>
-        <strong class="text-navy-900 font-bold">
-          {new Date(project.data.completedDate).toLocaleDateString('tr-TR', { year: 'numeric', month: 'long' })}
-        </strong>
-      </div>
-    </div>
+  <!-- Project Details & Case Study Article -->
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
+    
+    <!-- Specs Key Metrics Bar (Semantic list) -->
+    <ul class="mb-10 grid grid-cols-1 sm:grid-cols-2 gap-4 rounded-2xl border border-gray-200 bg-surface p-5 sm:p-6 list-none m-0">
+      <li>
+        <span class="text-xs text-gray-500 font-medium block">Uygulanan İklimlendirme Sistemi:</span>
+        <strong class="text-sm sm:text-base text-navy-900 font-bold mt-0.5 block">{project.data.systemType}</strong>
+      </li>
+      <li>
+        <span class="text-xs text-gray-500 font-medium block">Teslim ve Devreye Alma Tarihi:</span>
+        <strong class="text-sm sm:text-base text-navy-900 font-bold mt-0.5 block">{formattedDate}</strong>
+      </li>
+    </ul>
 
-    <article class="prose prose-lg prose-slate max-w-none prose-headings:font-bold prose-headings:text-navy-900">
-      <Content />
+    <!-- Article Content -->
+    <article class="bg-white rounded-2xl p-6 sm:p-10 border border-gray-200/90 shadow-sm">
+      <div class="prose prose-slate max-w-none prose-headings:font-bold prose-headings:text-navy-900 prose-h2:text-2xl prose-h2:border-b prose-h2:border-gray-100 prose-h2:pb-3 prose-h3:text-lg prose-p:text-gray-700 prose-p:leading-relaxed prose-li:text-gray-700">
+        <Content />
+      </div>
+
+      <!-- Action Card -->
+      <footer class="mt-10 pt-6 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <a
+          href="/projeler"
+          class="text-sm font-bold text-navy-900 hover:text-brand-600 transition-colors inline-flex items-center gap-1.5"
+        >
+          <span aria-hidden="true">&larr;</span>
+          <span>Tüm Projelere Dön</span>
+        </a>
+
+        <a
+          href="/iletisim"
+          class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-xl bg-brand-500 text-white font-bold text-sm hover:bg-brand-600 transition-colors shadow-sm text-center"
+        >
+          Benzer Bir Proje Başlatın
+        </a>
+      </footer>
     </article>
 
-    <div class="mt-12 pt-8 border-t border-gray-200 flex justify-between items-center">
-      <a href="/projeler" class="text-sm font-bold text-navy-900 hover:text-brand-600 flex items-center gap-1">
-        &larr; Tüm Projelere Dön
-      </a>
-      <a href="/iletisim" class="px-5 py-2.5 bg-brand-500 text-white rounded-lg text-sm font-bold hover:bg-brand-600">
-        Benzer Bir Proje Başlatın
-      </a>
-    </div>
   </div>
+
+  <!-- Global CTA Banner -->
+  <CtaBanner />
 </MainLayout>

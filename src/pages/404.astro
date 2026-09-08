@@ -7,27 +7,39 @@ import company from '@/data_files/company.json';
   title={`Sayfa Bulunamadı (404) | ${company.companyName}`}
   description="Aradığınız sayfa silinmiş veya taşınmış olabilir."
 >
-  <div class="min-h-[60vh] flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8">
+  <main class="min-h-[65vh] flex items-center justify-center py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md text-center space-y-6">
-      <div class="text-7xl font-extrabold text-brand-500">404</div>
-      <h1 class="text-2xl font-bold text-navy-900">Sayfa Bulunamadı</h1>
+      <span class="text-7xl sm:text-8xl font-black text-brand-500 font-mono tracking-tight block">
+        404
+      </span>
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-navy-900 leading-tight">
+        Sayfa Bulunamadı
+      </h1>
       <p class="text-sm text-gray-600 leading-relaxed">
-        Aradığınız sayfa adresi değiştirilmiş veya kaldırılmış olabilir. Ana sayfaya dönebilir veya doğrudan müşteri temsilcimizle iletişime geçebilirsiniz.
+        Ulaşmaya çalıştığınız sayfa adresi değiştirilmiş veya yayından kaldırılmış olabilir. Ana sayfaya dönebilir veya doğrudan müşteri temsilcimizle iletişime geçebilirsiniz.
       </p>
-      <div class="flex flex-col sm:flex-row justify-center gap-3">
+
+      <div class="pt-2 flex flex-col sm:flex-row justify-center gap-3">
         <a
           href="/"
-          class="px-6 py-3 text-sm font-bold text-white bg-navy-900 hover:bg-navy-950 rounded-xl transition-all"
+          class="inline-flex items-center justify-center px-6 py-3 text-sm font-bold text-white bg-navy-900 hover:bg-navy-950 rounded-xl transition-all shadow-sm"
         >
           Ana Sayfaya Dön
         </a>
         <a
-          href="/iletisim"
-          class="px-6 py-3 text-sm font-bold text-brand-700 bg-brand-50 hover:bg-brand-100 rounded-xl transition-all"
+          href="/hizmetler"
+          class="inline-flex items-center justify-center px-6 py-3 text-sm font-bold text-brand-700 bg-brand-50 hover:bg-brand-100 rounded-xl transition-all border border-brand-200"
         >
-          Bize Ulaşın
+          Hizmetlerimizi İnceleyin
+        </a>
+      </div>
+
+      <div class="pt-4 text-xs text-gray-500">
+        Acil bir arıza durumunda mısınız? 
+        <a href={`tel:${company.emergencyPhoneRaw}`} class="font-bold text-alert hover:underline block sm:inline mt-1 sm:mt-0">
+          {company.emergencyPhone}
         </a>
       </div>
     </div>
-  </div>
+  </main>
 </MainLayout>

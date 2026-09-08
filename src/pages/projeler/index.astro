@@ -1,52 +1,89 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro';
 import company from '@/data_files/company.json';
+import ProjectCard from '@/components/ui/ProjectCard.astro';
+import CtaBanner from '@/components/sections/CtaBanner.astro';
 import { getCollection } from 'astro:content';
 
 const projects = await getCollection('projects');
 ---
 
 <MainLayout
-  title={`Projelerimiz & Referanslar | ${company.companyName}`}
-  description="Tamamlanan VRF merkezi sistem uygulamaları, iş merkezleri, otel ve endüstriyel iklimlendirme referanslarımız."
+  title={`Projelerimiz & Referanslarımız | ${company.companyName}`}
+  description="Tamamlanan VRF merkezi sistem uygulamaları, iş merkezleri, otel ve kurumsal bina iklimlendirme projelerimiz."
 >
-  <div class="bg-navy-900 text-white py-16">
+  <!-- Page Header -->
+  <header class="bg-navy-900 text-white py-12 sm:py-16 border-b border-navy-950">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <span class="text-xs font-bold text-brand-400 uppercase tracking-widest">Referanslarımız</span>
-      <h1 class="text-3xl sm:text-5xl font-extrabold mt-2">Tamamlanan Projeler</h1>
-      <p class="text-gray-300 text-base max-w-2xl mt-3">
-        Farklı ölçekteki yapılarda başarıyla devreye aldığımız VRF merkezi sistem ve ticari klima uygulamalarımız.
+      
+      <!-- Semantic Breadcrumb -->
+      <nav aria-label="Erişim Yolu" class="mb-4">
+        <ol class="flex items-center gap-2 text-xs text-gray-400 list-none p-0 m-0">
+          <li>
+            <a href="/" class="hover:text-white transition-colors">Ana Sayfa</a>
+          </li>
+          <li aria-hidden="true" class="text-gray-600">/</li>
+          <li class="text-brand-400 font-semibold" aria-current="page">Projelerimiz</li>
+        </ol>
+      </nav>
+
+      <span class="text-xs font-bold text-brand-400 uppercase tracking-widest block">
+        Tamamlanan İşler
+      </span>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white mt-1.5 leading-tight">
+        Projelerimiz & Saha Referanslarımız
+      </h1>
+      <p class="text-sm sm:text-base text-gray-300 max-w-2xl mt-3 leading-relaxed">
+        Otel, plaza, fabrika ve nitelikli konut projelerinde devreye aldığımız yüksek enerji verimli VRF merkezi sistem uygulamaları.
       </p>
     </div>
-  </div>
+  </header>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      {projects.map((project) => (
-        <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between text-xs text-gray-500 mb-3">
-              <span class="font-semibold text-brand-700 bg-brand-50 px-2.5 py-1 rounded">
-                {project.data.client}
-              </span>
-              <span>{project.data.location}</span>
-            </div>
-            <h2 class="text-2xl font-bold text-navy-900">{project.data.title}</h2>
-            <p class="text-gray-600 mt-3 leading-relaxed">{project.data.summary}</p>
-          </div>
-          <div class="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between">
-            <span class="text-xs font-medium text-gray-500">
-              Sistem Tipi: <strong class="text-navy-900">{project.data.systemType}</strong>
-            </span>
-            <a
-              href={`/projeler/${project.id}`}
-              class="inline-flex items-center gap-1 font-bold text-sm text-brand-600 hover:text-brand-700"
-            >
-              Detay &rarr;
-            </a>
-          </div>
-        </div>
-      ))}
+  <!-- Projects Grid Section -->
+  <section class="py-14 sm:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <header class="max-w-3xl mb-10 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-900 leading-tight">
+          Kurumsal Referans Galerisi
+        </h2>
+        <p class="text-sm sm:text-base text-gray-600 mt-2">
+          Mühendislik ekibimiz tarafından projelendirilen ve teslim edilen seçkin çalışmalarımız.
+        </p>
+      </header>
+
+      <!-- Grid of Projects: Mobile 1 col, md 2 col -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+        {projects.map((project) => (
+          <ProjectCard
+            title={project.data.title}
+            client={project.data.client}
+            location={project.data.location}
+            systemType={project.data.systemType}
+            summary={project.data.summary}
+            slug={project.id}
+          />
+        ))}
+      </div>
+
     </div>
-  </div>
+  </section>
+
+  <!-- Sectoral Experience Highlights -->
+  <section class="py-14 sm:py-16 bg-surface border-t border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl mx-auto space-y-4">
+      <span class="text-xs font-bold text-brand-600 uppercase tracking-widest block">
+        Sektörel Uzmanlık
+      </span>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-900">
+        Farklı Sektörlerin İhtiyaçlarına Özel Projelendirme
+      </h2>
+      <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+        Turizm tesislerinin ultra sessiz oda konforu gereksiniminden, sanayi yapılarının yüksek hava debisi ve taze hava taleplerine kadar her sektöre özgü standartları eksiksiz uyguluyoruz.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <CtaBanner />
 </MainLayout>
