@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
+import compressor from 'astro-compressor';
 
 // https://astro.build/config
 export default defineConfig({
@@ -11,6 +12,10 @@ export default defineConfig({
     sitemap(),
     tailwind({
       applyBaseStyles: false,
+    }),
+    compressor({
+      gzip: true,
+      brotli: true,
     }),
   ],
 });
