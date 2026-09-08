@@ -1,0 +1,52 @@
+---
+import ProjectCard from '@/components/ui/ProjectCard.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  projects: CollectionEntry<'projects'>[];
+}
+
+const { projects } = Astro.props;
+---
+
+<section class="py-14 sm:py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <header class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 sm:mb-12 gap-4">
+      <div>
+        <span class="text-xs font-bold text-brand-600 uppercase tracking-widest block">
+          Referanslarımız
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-navy-900 mt-1.5 leading-tight">
+          Öne Çıkan VRF & Kurumsal Projeler
+        </h2>
+      </div>
+
+      <a
+        href="/projeler"
+        class="inline-flex items-center gap-2 text-sm font-bold text-brand-600 hover:text-brand-700 transition-colors shrink-0"
+      >
+        <span>Tüm Referansları Gör</span>
+        <svg class="h-4 w-4 transition-transform hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+    </header>
+
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+      {projects.map((project) => (
+        <ProjectCard
+          title={project.data.title}
+          client={project.data.client}
+          location={project.data.location}
+          systemType={project.data.systemType}
+          summary={project.data.summary}
+          slug={project.id}
+        />
+      ))}
+    </div>
+
+  </div>
+</section>

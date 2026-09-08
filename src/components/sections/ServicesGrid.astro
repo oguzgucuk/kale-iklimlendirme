@@ -1,0 +1,41 @@
+---
+import ServiceCard from '@/components/ui/ServiceCard.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  services: CollectionEntry<'services'>[];
+}
+
+const { services } = Astro.props;
+---
+
+<section class="py-14 sm:py-20 bg-surface">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Semantic Section Header -->
+    <header class="max-w-3xl mb-10 sm:mb-12">
+      <span class="text-xs font-bold text-brand-600 uppercase tracking-widest block">
+        Hizmetlerimiz
+      </span>
+      <h2 class="text-2xl sm:text-4xl font-extrabold text-navy-900 mt-1.5 leading-tight">
+        Bireysel ve Endüstriyel İklimlendirme Çözümleri
+      </h2>
+      <p class="text-sm sm:text-base text-gray-600 mt-2.5 leading-relaxed">
+        Mekanınızın mimari yapısına en uygun iklimlendirme sistemini projelendiriyor, garantili ve enerji verimli olarak devreye alıyoruz.
+      </p>
+    </header>
+
+    <!-- Services Grid: Mobile 1 col, Tablet 2 col, Desktop 4 col -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {services.map((service) => (
+        <ServiceCard
+          title={service.data.title}
+          shortDescription={service.data.shortDescription}
+          slug={service.id}
+          icon={service.data.icon}
+        />
+      ))}
+    </div>
+
+  </div>
+</section>
