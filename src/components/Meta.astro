@@ -6,6 +6,7 @@ interface Props {
   description?: string;
   ogImage?: string;
   structuredData?: object;
+  noindex?: boolean;
 }
 
 const {
@@ -13,6 +14,7 @@ const {
   description = company.description,
   ogImage = '/images/brand/og-image.jpg',
   structuredData,
+  noindex = false,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://kaleiklimlendirme.com');
@@ -65,6 +67,9 @@ const jsonLd = structuredData || defaultLocalBusinessSchema;
 
 <link rel="canonical" href={canonicalURL} />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<!-- Robots -->
+<meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>

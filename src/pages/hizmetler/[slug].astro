@@ -16,13 +16,82 @@ const { Content } = await render(service);
 const allServices = await getCollection('services');
 const otherServices = allServices.filter((s) => s.id !== service.id);
 
+const allProjects = await getCollection('projects');
+const matchingProjects = allProjects
+  .filter((p) => {
+    const text = (p.data.systemType + ' ' + p.id + ' ' + p.data.summary).toLowerCase();
+    if (service.id === 'vrf-merkezi-sistem-projelendirme') {
+      return text.includes('vrf') || text.includes('vrv') || text.includes('multi');
+    }
+    if (service.id === 'ariza-bakim-onarim') {
+      return text.includes('arıza') || text.includes('bakım') || text.includes('onar') || text.includes('kaçak') || text.includes('şarj');
+    }
+    if (service.id === 'klima-altyapi') {
+      return text.includes('altyapı') || text.includes('şantiye') || text.includes('borulama');
+    }
+    if (service.id === 'klima-satisi') {
+      return text.includes('satış') || text.includes('montaj') || text.includes('split') || text.includes('kaset') || text.includes('salon');
+    }
+    return false;
+  })
+  .slice(0, 3);
+
 const customWhatsAppMessage = `Merhaba, ${service.data.title} hizmetiniz hakkında detaylı bilgi ve ücretsiz keşif talep etmek istiyorum.`;
+
+const serviceUrl = `https://kaleiklimlendirme.com/hizmetler/${service.id}/`;
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Service',
+      '@id': `${serviceUrl}#service`,
+      name: service.data.title,
+      description: service.data.shortDescription,
+      serviceType: service.data.title,
+      provider: {
+        '@type': 'HVACBusiness',
+        name: company.companyName,
+        telephone: company.phone,
+        email: company.email,
+        url: 'https://kaleiklimlendirme.com/',
+      },
+      areaServed: company.areaServed.map((area) => ({
+        '@type': 'AdministrativeArea',
+        name: area,
+      })),
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Ana Sayfa',
+          item: 'https://kaleiklimlendirme.com/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Hizmetlerimiz',
+          item: 'https://kaleiklimlendirme.com/hizmetler/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: service.data.title,
+          item: serviceUrl,
+        },
+      ],
+    },
+  ],
+};
 ---
 
 <MainLayout
   title={`${service.data.title} | ${company.companyName}`}
   description={service.data.shortDescription}
   customWhatsAppMessage={customWhatsAppMessage}
+  structuredData={structuredData}
 >
   <!-- Semantic Page Header -->
   <header class="bg-navy-900 text-white py-12 sm:py-16 border-b border-navy-950">
@@ -36,7 +105,7 @@ const customWhatsAppMessage = `Merhaba, ${service.data.title} hizmetiniz hakkın
           </li>
           <li aria-hidden="true" class="text-gray-600">/</li>
           <li>
-            <a href="/hizmetler" class="hover:text-white transition-colors">Hizmetlerimiz</a>
+            <a href="/hizmetler/" class="hover:text-white transition-colors">Hizmetlerimiz</a>
           </li>
           <li aria-hidden="true" class="text-gray-600">/</li>
           <li class="text-brand-400 font-semibold" aria-current="page">{service.data.title}</li>
@@ -119,6 +188,49 @@ const customWhatsAppMessage = `Merhaba, ${service.data.title} hizmetiniz hakkın
           </div>
         </div>
 
+        <!-- Related Case Studies / Saha Referansları -->
+        {matchingProjects.length > 0 && (
+          <div class="rounded-2xl bg-white p-6 border border-gray-200 shadow-sm space-y-3.5">
+            <div class="flex items-center justify-between pb-2 border-b border-gray-100">
+              <h2 class="text-base font-bold text-navy-900">
+                Saha Referanslarımız
+              </h2>
+              <a
+                href="/projeler/"
+                class="text-xs font-semibold text-brand-600 hover:text-brand-700 inline-flex items-center gap-0.5"
+              >
+                <span>Tümü</span>
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+            <div class="space-y-3">
+              {matchingProjects.map((proj) => (
+                <a
+                  href={`/projeler/${proj.id}/`}
+                  class="group flex items-start gap-3 p-2 rounded-xl hover:bg-surface transition-colors"
+                >
+                  {proj.data.coverImage && (
+                    <div class="w-16 h-12 rounded-lg overflow-hidden shrink-0 bg-navy-950/10">
+                      <img
+                        src={proj.data.coverImage}
+                        alt={proj.data.title}
+                        class="w-full h-full object-cover transition-transform duration-200 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
+                  <div class="flex-1 min-w-0">
+                    <h3 class="text-xs font-bold text-navy-900 group-hover:text-brand-600 line-clamp-2 leading-snug">
+                      {proj.data.title}
+                    </h3>
+                    <div class="text-[11px] text-gray-500 mt-0.5 truncate">{proj.data.location}</div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
         <!-- Other Services List -->
         <nav aria-label="Diğer Hizmetler" class="rounded-2xl bg-white p-6 border border-gray-200 shadow-sm">
           <h2 class="text-base font-bold text-navy-900 mb-4 pb-2 border-b border-gray-100">
@@ -128,7 +240,7 @@ const customWhatsAppMessage = `Merhaba, ${service.data.title} hizmetiniz hakkın
             {otherServices.map((s) => (
               <li>
                 <a
-                  href={`/hizmetler/${s.id}`}
+                  href={`/hizmetler/${s.id}/`}
                   class="flex items-center justify-between py-2 text-sm font-medium text-gray-700 hover:text-brand-600 transition-colors"
                 >
                   <span>{s.data.title}</span>

@@ -3,14 +3,14 @@
   "legalName": "Kale İklimlendirme ve Havalandırma Sistemleri San. Tic. Ltd. Şti.",
   "slogan": "VRF Merkezi Sistemler ve Kurumsal İklimlendirme Çözümleri",
   "description": "Klima satışı, VRF merkezi sistem projelendirme, profesyonel periyodik bakım, arıza onarım ve altyapı tesisat mühendisliği.",
-  "phone": "+90 212 555 01 23",
-  "phoneRaw": "+902125550123",
-  "emergencyPhone": "+90 532 555 01 99",
-  "emergencyPhoneRaw": "+905325550199",
-  "whatsappNumber": "+90 532 555 01 99",
-  "whatsappRaw": "905325550199",
+  "phone": "+90 553 733 12 01",
+  "phoneRaw": "+905537331201",
+  "emergencyPhone": "+90 553 733 12 01",
+  "emergencyPhoneRaw": "+905537331201",
+  "whatsappNumber": "+90 553 733 12 01",
+  "whatsappRaw": "905537331201",
   "defaultWhatsAppMessage": "Merhaba, klima hizmetleriniz ve VRF projelendirme hakkında bilgi ve keşif talep etmek istiyorum.",
-  "email": "info@kaleiklimlendirme.com",
+  "email": "Kadirkale1201@gmail.com",
   "address": {
     "street": "Mühendisler Cad. No: 42, Sanayi Mah.",
     "district": "Kağıthane",
@@ -36,10 +36,12 @@
     "facebook": "https://facebook.com/kaleiklimlendirme"
   },
   "authorizedBrands": [
+    "Carrier",
+    "Gree",
+    "Midea",
+    "Samsung",
     "Daikin",
-    "Mitsubishi Electric",
-    "VRV / VRF Çözüm Ortağı",
-    "LG Multi V",
-    "Toshiba SMMS"
+    "Arçelik",
+    "Mitsubishi Electric"
   ]
 }

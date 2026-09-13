@@ -52,17 +52,20 @@ const projects = await getCollection('projects');
         </p>
       </header>
 
-      <!-- Grid of Projects: Mobile 1 col, md 2 col -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-        {projects.map((project) => (
-          <ProjectCard
-            title={project.data.title}
-            client={project.data.client}
-            location={project.data.location}
-            systemType={project.data.systemType}
-            summary={project.data.summary}
-            slug={project.id}
-          />
+      <!-- Grid of Projects: Mobile 1 col, md 2 col, lg 3 col -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+        {projects
+          .sort((a, b) => new Date(b.data.completedDate).getTime() - new Date(a.data.completedDate).getTime())
+          .map((project) => (
+            <ProjectCard
+              title={project.data.title}
+              client={project.data.client}
+              location={project.data.location}
+              systemType={project.data.systemType}
+              summary={project.data.summary}
+              slug={project.id}
+              coverImage={project.data.coverImage}
+            />
         ))}
       </div>
 

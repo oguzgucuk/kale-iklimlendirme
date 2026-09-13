@@ -4,6 +4,7 @@ import company from '@/data_files/company.json';
 import { getCollection } from 'astro:content';
 
 import HeroSection from '@/components/sections/HeroSection.astro';
+import BrandRibbon from '@/components/sections/BrandRibbon.astro';
 import ServicesGrid from '@/components/sections/ServicesGrid.astro';
 import WhyUsSection from '@/components/sections/WhyUsSection.astro';
 import ProjectsShowcase from '@/components/sections/ProjectsShowcase.astro';
@@ -23,6 +24,9 @@ const testimonials = await getCollection('testimonials');
 >
   <!-- 1. Hero Section -->
   <HeroSection />
+
+  <!-- 1.5 Brand Trust Ribbon (Gree, Midea, Samsung, Daikin, Arçelik, Mitsubishi) -->
+  <BrandRibbon />
 
   <!-- 2. Services Grid Section -->
   <ServicesGrid services={services} />

@@ -11,9 +11,11 @@ interface Props {
   ogImage?: string;
   structuredData?: object;
   customWhatsAppMessage?: string;
+  noindex?: boolean;
 }
 
-const { title, description, ogImage, structuredData, customWhatsAppMessage } = Astro.props;
+const { title, description, ogImage, structuredData, customWhatsAppMessage, noindex = false } = Astro.props;
+const isHome = Astro.url.pathname === '/';
 ---
 
 <!doctype html>
@@ -24,6 +26,7 @@ const { title, description, ogImage, structuredData, customWhatsAppMessage } = A
       description={description}
       ogImage={ogImage}
       structuredData={structuredData}
+      noindex={noindex}
     />
     <!-- Inter Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

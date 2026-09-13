@@ -7,9 +7,12 @@ import compressor from 'astro-compressor';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://kaleiklimlendirme.com',
+  trailingSlash: 'always',
   integrations: [
     react(),
-    sitemap(),
+    sitemap({
+      filter: (page) => !page.includes('/404'),
+    }),
     tailwind({
       applyBaseStyles: false,
     }),

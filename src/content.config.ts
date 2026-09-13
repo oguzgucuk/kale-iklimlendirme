@@ -24,6 +24,8 @@ const projects = defineCollection({
       location: z.string(),
       systemType: z.string(),
       summary: z.string(),
+      coverImage: z.string().optional(),
+      gallery: z.array(z.string()).optional(),
       images: z.array(image()).optional(),
       completedDate: z.coerce.date(),
       featured: z.boolean().default(false),

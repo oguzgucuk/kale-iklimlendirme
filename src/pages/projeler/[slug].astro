@@ -2,6 +2,7 @@
 import MainLayout from '@/layouts/MainLayout.astro';
 import company from '@/data_files/company.json';
 import { Badge } from '@/components/ui/badge';
+import ProjectCard from '@/components/ui/ProjectCard.astro';
 import CtaBanner from '@/components/sections/CtaBanner.astro';
 import { getCollection, render } from 'astro:content';
 
@@ -16,15 +17,87 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const { Content } = await render(project);
 
+const allProjects = await getCollection('projects');
+const otherProjects = allProjects.filter((p) => p.id !== project.id).slice(0, 3);
+
+function getRelatedService(p: typeof project) {
+  const text = (p.data.systemType + ' ' + p.id + ' ' + p.data.summary).toLowerCase();
+  if (text.includes('vrf') || text.includes('vrv') || text.includes('city multi') || text.includes('merkezi')) {
+    return { title: 'VRF Merkezi Sistem Projelendirme', url: '/hizmetler/vrf-merkezi-sistem-projelendirme/' };
+  }
+  if (text.includes('arıza') || text.includes('onar') || text.includes('bakım') || text.includes('kaçak') || text.includes('gaz')) {
+    return { title: 'Arıza, Bakım & Onarım Hizmeti', url: '/hizmetler/ariza-bakim-onarim/' };
+  }
+  if (text.includes('altyapı') || text.includes('şantiye') || text.includes('borulama')) {
+    return { title: 'Klima Altyapı Tesisatı', url: '/hizmetler/klima-altyapi/' };
+  }
+  return { title: 'Klima Satışı & Montajı', url: '/hizmetler/klima-satisi/' };
+}
+
+const relatedService = getRelatedService(project);
+
 const formattedDate = new Date(project.data.completedDate).toLocaleDateString('tr-TR', {
   year: 'numeric',
   month: 'long',
 });
+
+const projectUrl = `https://kaleiklimlendirme.com/projeler/${project.id}/`;
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      '@id': `${projectUrl}#article`,
+      isPartOf: { '@id': projectUrl },
+      headline: project.data.title,
+      description: project.data.summary,
+      image: project.data.coverImage ? `https://kaleiklimlendirme.com${project.data.coverImage}` : undefined,
+      datePublished: new Date(project.data.completedDate).toISOString(),
+      author: {
+        '@type': 'Organization',
+        name: company.companyName,
+        url: 'https://kaleiklimlendirme.com/',
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: company.companyName,
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://kaleiklimlendirme.com/images/brand/kale-logo.jpg',
+        },
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Ana Sayfa',
+          item: 'https://kaleiklimlendirme.com/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Projelerimiz',
+          item: 'https://kaleiklimlendirme.com/projeler/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: project.data.title,
+          item: projectUrl,
+        },
+      ],
+    },
+  ],
+};
 ---
 
 <MainLayout
   title={`${project.data.title} | ${company.companyName}`}
   description={project.data.summary}
+  structuredData={structuredData}
 >
   <!-- Semantic Page Header -->
   <header class="bg-navy-900 text-white py-12 sm:py-16 border-b border-navy-950">
@@ -38,7 +111,7 @@ const formattedDate = new Date(project.data.completedDate).toLocaleDateString('t
           </li>
           <li aria-hidden="true" class="text-gray-600">/</li>
           <li>
-            <a href="/projeler" class="hover:text-white transition-colors">Projelerimiz</a>
+            <a href="/projeler/" class="hover:text-white transition-colors">Projelerimiz</a>
           </li>
           <li aria-hidden="true" class="text-gray-600">/</li>
           <li class="text-brand-400 font-semibold" aria-current="page">{project.data.title}</li>
@@ -65,15 +138,36 @@ const formattedDate = new Date(project.data.completedDate).toLocaleDateString('t
   <!-- Project Details & Case Study Article -->
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
     
+    <!-- Main Featured Photo -->
+    {project.data.coverImage && (
+      <div class="mb-8 overflow-hidden rounded-2xl border border-gray-200/90 shadow-md bg-navy-950/5">
+        <img
+          src={project.data.coverImage}
+          alt={`${project.data.title} - Saha Uygulaması`}
+          class="w-full max-h-[500px] object-cover object-center"
+        />
+      </div>
+    )}
+
     <!-- Specs Key Metrics Bar (Semantic list) -->
-    <ul class="mb-10 grid grid-cols-1 sm:grid-cols-2 gap-4 rounded-2xl border border-gray-200 bg-surface p-5 sm:p-6 list-none m-0">
+    <ul class="mb-10 grid grid-cols-1 sm:grid-cols-3 gap-4 rounded-2xl border border-gray-200 bg-surface p-5 sm:p-6 list-none m-0">
       <li>
         <span class="text-xs text-gray-500 font-medium block">Uygulanan İklimlendirme Sistemi:</span>
         <strong class="text-sm sm:text-base text-navy-900 font-bold mt-0.5 block">{project.data.systemType}</strong>
       </li>
       <li>
-        <span class="text-xs text-gray-500 font-medium block">Teslim ve Devreye Alma Tarihi:</span>
+        <span class="text-xs text-gray-500 font-medium block">Teslim ve Devreye Alma:</span>
         <strong class="text-sm sm:text-base text-navy-900 font-bold mt-0.5 block">{formattedDate}</strong>
+      </li>
+      <li>
+        <span class="text-xs text-gray-500 font-medium block">İlgili Hizmetimiz:</span>
+        <a
+          href={relatedService.url}
+          class="text-sm sm:text-base text-brand-600 hover:text-brand-700 font-bold mt-0.5 inline-flex items-center gap-1 group/srv"
+        >
+          <span>{relatedService.title}</span>
+          <span class="transition-transform group-hover/srv:translate-x-0.5" aria-hidden="true">&rarr;</span>
+        </a>
       </li>
     </ul>
 
@@ -83,10 +177,31 @@ const formattedDate = new Date(project.data.completedDate).toLocaleDateString('t
         <Content />
       </div>
 
+      <!-- Project Gallery Photos -->
+      {project.data.gallery && project.data.gallery.length > 0 && (
+        <div class="mt-10 pt-8 border-t border-gray-100">
+          <h3 class="text-lg sm:text-xl font-extrabold text-navy-900 mb-4">
+            Saha ve Uygulama Detay Fotoğrafları
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {project.data.gallery.map((imgUrl, idx) => (
+              <div class="overflow-hidden rounded-xl border border-gray-200 aspect-[4/3] bg-navy-950/5 group shadow-sm">
+                <img
+                  src={imgUrl}
+                  alt={`${project.data.title} - Montaj Detayı ${idx + 1}`}
+                  class="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       <!-- Action Card -->
       <footer class="mt-10 pt-6 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4">
         <a
-          href="/projeler"
+          href="/projeler/"
           class="text-sm font-bold text-navy-900 hover:text-brand-600 transition-colors inline-flex items-center gap-1.5"
         >
           <span aria-hidden="true">&larr;</span>
@@ -94,13 +209,50 @@ const formattedDate = new Date(project.data.completedDate).toLocaleDateString('t
         </a>
 
         <a
-          href="/iletisim"
+          href="/iletisim/"
           class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-xl bg-brand-500 text-white font-bold text-sm hover:bg-brand-600 transition-colors shadow-sm text-center"
         >
           Benzer Bir Proje Başlatın
         </a>
       </footer>
     </article>
+
+    <!-- Other Projects Section (İç Linkleme Ağı) -->
+    {otherProjects.length > 0 && (
+      <section class="mt-14 pt-10 border-t border-gray-200">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <span class="text-xs font-bold text-brand-600 uppercase tracking-widest block">
+              Benzer İşlerimiz
+            </span>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-navy-900 mt-1">
+              Diğer Saha Referanslarımız
+            </h2>
+          </div>
+          <a
+            href="/projeler/"
+            class="text-xs sm:text-sm font-bold text-brand-600 hover:text-brand-700 inline-flex items-center gap-1"
+          >
+            <span>Tümünü Gör</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+          {otherProjects.map((p) => (
+            <ProjectCard
+              title={p.data.title}
+              client={p.data.client}
+              location={p.data.location}
+              systemType={p.data.systemType}
+              summary={p.data.summary}
+              slug={p.id}
+              coverImage={p.data.coverImage}
+            />
+          ))}
+        </div>
+      </section>
+    )}
 
   </div>
 

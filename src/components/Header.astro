@@ -3,97 +3,72 @@ import company from '@/data_files/company.json';
 import { navBarLinks } from '@/utils/navigation';
 
 const currentPath = Astro.url.pathname;
+const isHome = currentPath === '/';
 ---
 
-<header class="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-surface-border">
-  <!-- Top Bar: Acil Destek & Çalışma Saatleri -->
-  <div class="hidden md:block bg-navy-900 text-white text-xs py-2 border-b border-navy-950/40">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-      <div class="flex items-center gap-6">
-        <span class="flex items-center gap-1.5 text-gray-300">
-          <svg class="w-3.5 h-3.5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          Çalışma Saatleri: {company.workingHours.weekdays} | {company.workingHours.support}
-        </span>
-        <span class="flex items-center gap-1.5 text-gray-300">
-          <svg class="w-3.5 h-3.5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg>
-          Hizmet Bölgesi: {company.areaServed.join(', ')}
-        </span>
-      </div>
-
-      <div class="flex items-center gap-4">
-        <a
-          href={`tel:${company.phoneRaw}`}
-          class="flex items-center gap-1.5 font-medium text-white hover:text-brand-300 transition-colors"
-        >
-          <svg class="w-3.5 h-3.5 text-alert" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-          </svg>
-          <span>Müşteri Hattı: <strong>{company.phone}</strong></span>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Main Navigation Bar -->
+<header
+  id="main-header"
+  class={`z-50 transition-all duration-300 border-none outline-none ${
+    isHome
+      ? 'fixed top-0 left-0 right-0 bg-transparent'
+      : 'sticky top-0 w-full bg-[#101828] shadow-xl shadow-black/20'
+  }`}
+>
+  <!-- Main Navigation Bar (Kompakt 64px yükseklik) -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center h-20">
+    <div id="nav-container" class="flex justify-between items-center h-16 transition-all duration-300">
       
       <!-- Brand Logo & Title -->
-      <a href="/" class="flex items-center gap-3.5 group focus:outline-none">
-        <div class="w-11 h-11 rounded-lg bg-navy-900 flex items-center justify-center text-brand-400 group-hover:bg-brand-600 group-hover:text-white transition-all shadow-sm">
+      <a href="/" class="flex items-center gap-3 group focus:outline-none">
+        <div class="w-9 h-9 rounded-lg bg-navy-900/80 border border-white/20 flex items-center justify-center text-brand-400 group-hover:bg-brand-500 group-hover:text-white transition-all shadow-sm">
           <!-- Industrial HVAC Ventilation Icon -->
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
             <circle cx="12" cy="12" r="3" stroke-width="2" />
           </svg>
         </div>
         <div class="flex flex-col">
-          <span class="text-xl font-bold tracking-tight text-navy-900 leading-tight">
-            KALE <span class="text-brand-500 font-extrabold">İKLİMLENDİRME</span>
+          <span class="text-base sm:text-lg font-bold tracking-tight text-white leading-tight">
+            KALE <span class="text-brand-400 font-extrabold">İKLİMLENDİRME</span>
           </span>
-          <span class="text-[11px] font-semibold text-gray-500 tracking-wider uppercase">
+          <span class="text-[10px] font-semibold text-gray-300 tracking-wider uppercase">
             VRF Sistemleri & Klima Mühendisliği
           </span>
         </div>
       </a>
 
       <!-- Desktop Nav Links -->
-      <nav class="hidden lg:flex items-center gap-7">
+      <nav class="hidden lg:flex items-center gap-6">
         {navBarLinks.map((link) => {
           const isActive = currentPath === link.url || (link.url !== '/' && currentPath.startsWith(link.url));
           const hasSublinks = link.sublinks && link.sublinks.length > 0;
 
           if (hasSublinks) {
             return (
-              <div class="relative group py-6">
+              <div class="relative group py-4">
                 <a
                   href={link.url}
                   class={`inline-flex items-center gap-1 text-sm font-semibold transition-colors ${
-                    isActive ? 'text-brand-500' : 'text-navy-900 hover:text-brand-500'
+                    isActive ? 'text-brand-400' : 'text-white/90 hover:text-brand-400'
                   }`}
                 >
                   {link.name}
-                  <svg class="w-4 h-4 text-gray-400 group-hover:text-brand-500 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-3.5 h-3.5 text-gray-400 group-hover:text-brand-400 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                   </svg>
                 </a>
 
                 <!-- Dropdown Menu -->
-                <div class="absolute left-0 top-full -mt-2 w-80 bg-white rounded-xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 p-3 z-50">
-                  <div class="space-y-1">
+                <div class="absolute left-0 top-full -mt-1 w-72 bg-[#101828] backdrop-blur-md rounded-xl shadow-2xl border border-navy-800 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 p-2.5 z-50">
+                  <div class="space-y-0.5">
                     {link.sublinks?.map((sub) => (
                       <a
                         href={sub.url}
-                        class="block px-3 py-2.5 rounded-lg hover:bg-surface transition-colors"
+                        class="block px-3 py-2 rounded-lg hover:bg-navy-900 transition-colors"
                       >
-                        <div class="font-medium text-sm text-navy-900 hover:text-brand-500">{sub.name}</div>
+                        <div class="font-medium text-xs sm:text-sm text-white hover:text-brand-400">{sub.name}</div>
                         {sub.description && (
-                          <div class="text-xs text-gray-500 mt-0.5 line-clamp-1">{sub.description}</div>
+                          <div class="text-[11px] text-gray-400 mt-0.5 line-clamp-1">{sub.description}</div>
                         )}
                       </a>
                     ))}
@@ -107,7 +82,7 @@ const currentPath = Astro.url.pathname;
             <a
               href={link.url}
               class={`text-sm font-semibold transition-colors ${
-                isActive ? 'text-brand-500' : 'text-navy-900 hover:text-brand-500'
+                isActive ? 'text-brand-400' : 'text-white/90 hover:text-brand-400'
               }`}
             >
               {link.name}
@@ -117,24 +92,25 @@ const currentPath = Astro.url.pathname;
       </nav>
 
       <!-- Action Buttons -->
-      <div class="hidden sm:flex items-center gap-3">
+      <div class="hidden sm:flex items-center gap-2.5">
         <a
           href={`tel:${company.phoneRaw}`}
-          class="flex items-center gap-2 px-3.5 py-2 text-sm font-semibold text-navy-900 bg-surface hover:bg-gray-200/80 rounded-lg border border-gray-200 transition-colors"
+          class="flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-white bg-white/10 hover:bg-white/20 rounded-lg border border-white/20 backdrop-blur-sm transition-all"
           title="Doğrudan Arayın"
         >
-          <svg class="w-4 h-4 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-3.5 h-3.5 text-alert" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
           </svg>
           <span class="hidden xl:inline">{company.phone}</span>
           <span class="xl:hidden">Hemen Ara</span>
         </a>
 
+        <!-- "Keşif Al" Butonu -->
         <a
           href="/iletisim"
-          class="inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold text-white bg-brand-500 hover:bg-brand-600 rounded-lg shadow-sm transition-all focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
+          class="inline-flex items-center justify-center px-4 py-2 text-xs sm:text-sm font-bold text-white bg-brand-500 hover:bg-brand-600 rounded-lg shadow-md shadow-brand-500/20 transition-all focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
         >
-          Ücretsiz Keşif Al
+          Keşif Al
         </a>
       </div>
 
@@ -142,10 +118,10 @@ const currentPath = Astro.url.pathname;
       <div class="flex lg:hidden items-center gap-2">
         <a
           href={`tel:${company.phoneRaw}`}
-          class="p-2 text-navy-900 bg-surface rounded-lg border border-gray-200"
+          class="p-2 text-white bg-white/10 rounded-lg border border-white/20"
           aria-label="Ara"
         >
-          <svg class="w-5 h-5 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-4 h-4 text-alert" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
           </svg>
         </a>
@@ -153,14 +129,14 @@ const currentPath = Astro.url.pathname;
         <button
           type="button"
           id="mobile-menu-toggle"
-          class="p-2.5 text-gray-700 hover:text-navy-900 hover:bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
+          class="p-2 text-white hover:bg-white/10 rounded-lg focus:outline-none"
           aria-label="Menüyü Aç"
           aria-expanded="false"
         >
-          <svg id="menu-icon-open" class="w-6 h-6 block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg id="menu-icon-open" class="w-5 h-5 block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
-          <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg id="menu-icon-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
@@ -170,21 +146,21 @@ const currentPath = Astro.url.pathname;
   </div>
 
   <!-- Mobile Dropdown Navigation -->
-  <div id="mobile-menu" class="hidden lg:hidden border-t border-gray-200 bg-white px-4 pt-3 pb-6 space-y-2 shadow-lg">
+  <div id="mobile-menu" class="hidden lg:hidden border-t border-navy-800 bg-[#101828]/98 backdrop-blur-xl px-4 pt-3 pb-6 space-y-2 shadow-2xl">
     {navBarLinks.map((link) => (
       <div>
         <a
           href={link.url}
-          class="block py-2 text-base font-semibold text-navy-900 hover:text-brand-500 border-b border-gray-100"
+          class="block py-2 text-base font-semibold text-white hover:text-brand-400 border-b border-navy-900"
         >
           {link.name}
         </a>
         {link.sublinks && (
-          <div class="pl-4 py-1 space-y-1 bg-surface rounded-lg mt-1">
+          <div class="pl-4 py-1 space-y-1 bg-navy-900/60 rounded-lg mt-1">
             {link.sublinks.map((sub) => (
               <a
                 href={sub.url}
-                class="block py-1.5 text-sm text-gray-600 hover:text-brand-500 font-medium"
+                class="block py-1.5 text-sm text-gray-300 hover:text-brand-400 font-medium"
               >
                 {sub.name}
               </a>
@@ -197,9 +173,9 @@ const currentPath = Astro.url.pathname;
     <div class="pt-4 flex flex-col gap-2.5">
       <a
         href={`tel:${company.phoneRaw}`}
-        class="w-full flex items-center justify-center gap-2 py-3 text-sm font-bold text-navy-900 bg-surface rounded-lg border border-gray-200"
+        class="w-full flex items-center justify-center gap-2 py-2.5 text-sm font-bold text-white bg-white/10 hover:bg-white/20 rounded-lg border border-white/20"
       >
-        <svg class="w-4 h-4 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-4 h-4 text-alert" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
         </svg>
         Hemen Arayın: {company.phone}
@@ -207,15 +183,36 @@ const currentPath = Astro.url.pathname;
 
       <a
         href="/iletisim"
-        class="w-full text-center py-3 text-sm font-bold text-white bg-brand-500 hover:bg-brand-600 rounded-lg shadow-sm"
+        class="w-full text-center py-2.5 text-sm font-bold text-white bg-brand-500 hover:bg-brand-600 rounded-lg shadow-md shadow-brand-500/20"
       >
-        Ücretsiz Keşif & Teklif Talebi
+        Keşif Al
       </a>
     </div>
   </div>
 </header>
 
 <script>
+  const header = document.getElementById('main-header');
+  const isHomePage = window.location.pathname === '/';
+
+  function onGlobalScroll() {
+    const isScrolled = window.scrollY > 15;
+
+    // Ana Sayfa: İlk açılışta şeffaf, tek scrollda #101828 laciverte dönüşür
+    if (isHomePage && header) {
+      if (isScrolled) {
+        header.classList.add('bg-[#101828]', 'shadow-2xl', 'shadow-black/30');
+        header.classList.remove('bg-transparent');
+      } else {
+        header.classList.remove('bg-[#101828]', 'shadow-2xl', 'shadow-black/30');
+        header.classList.add('bg-transparent');
+      }
+    }
+  }
+
+  window.addEventListener('scroll', onGlobalScroll, { passive: true });
+  onGlobalScroll();
+
   const toggleBtn = document.getElementById('mobile-menu-toggle');
   const menu = document.getElementById('mobile-menu');
   const iconOpen = document.getElementById('menu-icon-open');
