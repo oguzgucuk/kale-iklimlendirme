@@ -104,7 +104,7 @@ const currentYear = new Date().getFullYear();
             <svg class="w-4 h-4 text-brand-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
-            <a href={`mailto:${company.email}`} class="hover:text-white truncate">
+            <a href={`mailto:${company.email}`} class="hover:text-white break-all">
               {company.email}
             </a>
           </li>
@@ -123,14 +123,14 @@ const currentYear = new Date().getFullYear();
     </div>
 
     <!-- Bottom Copyright & Legal -->
-    <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-500 gap-4">
+    <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-500 gap-4 text-center sm:text-left">
       <p>
         &copy; {currentYear} {company.legalName}. Tüm hakları saklıdır.
       </p>
-      <div class="flex items-center gap-4">
-        <a href="/kvkk/" class="hover:text-gray-300 transition-colors">Gizlilik Politikası</a>
-        <span>•</span>
-        <a href="/kvkk/" class="hover:text-gray-300 transition-colors">KVKK Aydınlatma Metni</a>
+      <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+        <a href="/kvkk/" class="hover:text-gray-300 transition-colors whitespace-nowrap">Gizlilik Politikası</a>
+        <span aria-hidden="true">•</span>
+        <a href="/kvkk/" class="hover:text-gray-300 transition-colors whitespace-nowrap">KVKK Aydınlatma Metni</a>
       </div>
     </div>
   </div>

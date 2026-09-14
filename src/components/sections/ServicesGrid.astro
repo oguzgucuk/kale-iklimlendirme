@@ -69,19 +69,19 @@ const otherServices = services.filter((s) => s.id !== flagship.id);
           </ul>
         </div>
 
-        <div class="relative z-10 mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center gap-3">
+        <div class="relative z-10 mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
           <a
             href={`/hizmetler/${flagship.id}/`}
-            class="inline-flex items-center justify-center px-5 py-2.5 text-xs sm:text-sm font-bold text-navy-950 bg-white hover:bg-slate-100 rounded-lg shadow-sm transition-colors"
+            class="w-full sm:w-auto inline-flex items-center justify-center px-5 py-2.5 text-xs sm:text-sm font-bold text-navy-950 bg-white hover:bg-slate-100 rounded-lg shadow-sm transition-colors whitespace-nowrap"
           >
             <span>Mühendislik Kapsamını İncele</span>
-            <svg class="h-4 w-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="h-4 w-4 ml-1.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
           </a>
           <a
             href="/iletisim/"
-            class="inline-flex items-center justify-center px-4 py-2.5 text-xs sm:text-sm font-bold text-white bg-white/10 hover:bg-white/20 border border-white/15 rounded-lg transition-colors"
+            class="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2.5 text-xs sm:text-sm font-bold text-white bg-white/10 hover:bg-white/20 border border-white/15 rounded-lg transition-colors whitespace-nowrap"
           >
             <span>Ücretsiz Keşif İste</span>
           </a>
@@ -93,7 +93,7 @@ const otherServices = services.filter((s) => s.id !== flagship.id);
         {otherServices.map((service) => (
           <article class="group rounded-xl border border-gray-200 bg-white p-6 shadow-xs hover:border-brand-500/40 hover:shadow-sm transition-all flex flex-col justify-between">
             <div>
-              <div class="flex items-center justify-between gap-2 mb-2">
+              <div class="flex flex-wrap items-start justify-between gap-2 mb-2">
                 <h3 class="text-base sm:text-lg font-bold text-navy-950 transition-colors group-hover:text-brand-600 font-heading">
                   <a href={`/hizmetler/${service.id}/`} class="focus:outline-none">
                     {service.data.title}

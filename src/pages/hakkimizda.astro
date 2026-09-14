@@ -21,6 +21,17 @@ const standards = [
     description: 'Tüm montaj ve bakım operasyonları Daikin, Mitsubishi Electric gibi lider üreticilerin resmi prosedürlerine tam uyumludur.',
   },
 ];
+
+const brandLogos = [
+  { name: 'Daikin', logo: '/images/brand/daikin.webp', alt: 'Daikin VRV ve Klima Çözümleri' },
+  { name: 'Mitsubishi Electric', logo: '/images/brand/mitsubishi.png', alt: 'Mitsubishi Electric İklimlendirme Sistemleri' },
+  { name: 'LG', logo: '/images/brand/lg.png', alt: 'LG Multi V ve VRF Çözümleri' },
+  { name: 'Samsung', logo: '/images/brand/samsung.svg', alt: 'Samsung VRF ve Klima Sistemleri' },
+  { name: 'Carrier', logo: '/images/brand/carrier.webp', alt: 'Carrier Kurumsal İklimlendirme' },
+  { name: 'Gree', logo: '/images/brand/gree.svg', alt: 'Gree VRF ve Bireysel Klimalar' },
+  { name: 'Arçelik', logo: '/images/brand/arcelik.webp', alt: 'Arçelik Kurumsal ve Bireysel İklimlendirme' },
+  { name: 'Midea', logo: '/images/brand/midea.webp', alt: 'Midea Ticari ve Bireysel Klimalar' },
+];
 ---
 
 <MainLayout
@@ -33,7 +44,7 @@ const standards = [
       
       <!-- Semantic Breadcrumb -->
       <nav aria-label="Erişim Yolu" class="mb-4">
-        <ol class="flex items-center gap-2 text-xs text-gray-400 list-none p-0 m-0">
+        <ol class="flex flex-wrap items-center gap-2 text-xs text-gray-400 list-none p-0 m-0">
           <li>
             <a href="/" class="hover:text-white transition-colors">Ana Sayfa</a>
           </li>
@@ -81,19 +92,19 @@ const standards = [
         <!-- Metrics List (5 cols) -->
         <aside class="lg:col-span-5 rounded-2xl border border-gray-200 bg-surface p-6 sm:p-8 space-y-6">
           <div class="border-l-4 border-brand-500 pl-4">
-            <div class="text-3xl font-extrabold text-navy-900 font-mono">15+ Yıl</div>
+            <div class="text-3xl font-extrabold text-navy-900 font-heading">15+ Yıl</div>
             <div class="text-xs sm:text-sm text-gray-600 font-medium mt-0.5">Sektörel Mühendislik Deneyimi</div>
           </div>
           <div class="border-l-4 border-brand-500 pl-4">
-            <div class="text-3xl font-extrabold text-navy-900 font-mono">450+</div>
+            <div class="text-3xl font-extrabold text-navy-900 font-heading">450+</div>
             <div class="text-xs sm:text-sm text-gray-600 font-medium mt-0.5">Devreye Alınan VRF & Kurumsal Proje</div>
           </div>
           <div class="border-l-4 border-brand-500 pl-4">
-            <div class="text-3xl font-extrabold text-navy-900 font-mono">7/24</div>
+            <div class="text-3xl font-extrabold text-navy-900 font-heading">7/24</div>
             <div class="text-xs sm:text-sm text-gray-600 font-medium mt-0.5">Nöbetçi Acil Servis & Müdahale</div>
           </div>
           <div class="border-l-4 border-brand-500 pl-4">
-            <div class="text-3xl font-extrabold text-navy-900 font-mono">%100</div>
+            <div class="text-3xl font-extrabold text-navy-900 font-heading">%100</div>
             <div class="text-xs sm:text-sm text-gray-600 font-medium mt-0.5">Orijinal Parça & Distribütör Güvencesi</div>
           </div>
         </aside>
@@ -110,7 +121,7 @@ const standards = [
         <span class="text-xs font-bold text-brand-600 uppercase tracking-widest block">
           Kalite Güvencesi
         </span>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-900 mt-1.5 leading-tight">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-900 mt-1.5 leading-tight font-heading">
           Sahada Taviz Vermediğimiz Montaj Standartları
         </h2>
         <p class="text-sm sm:text-base text-gray-600 mt-2">
@@ -121,10 +132,10 @@ const standards = [
       <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 list-none p-0 m-0">
         {standards.map((std, i) => (
           <li class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-            <span class="text-2xl font-black text-brand-500 font-mono block mb-3">
+            <span class="text-2xl font-black text-brand-500 font-heading block mb-3">
               0{i + 1}
             </span>
-            <h3 class="text-base font-bold text-navy-900 mb-2">{std.title}</h3>
+            <h3 class="text-base font-bold text-navy-900 mb-2 font-heading">{std.title}</h3>
             <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">{std.description}</p>
           </li>
         ))}
@@ -134,22 +145,29 @@ const standards = [
   </section>
 
   <!-- Authorized Brands Section -->
-  <section id="markalar" class="py-14 sm:py-16 bg-white">
+  <section id="markalar" class="py-14 sm:py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-10">
+      <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
         <span class="text-xs font-bold text-brand-600 uppercase tracking-widest block">
           Çözüm Ortakları
         </span>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-900 mt-1.5">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-900 mt-1.5 font-heading">
           Satış ve Montajını Yaptığımız Lider Markalar
         </h2>
-        <p class="text-sm text-gray-600 mt-2">Dünya standartlarında üretilmiş lider klima markalarıyla çalışıyoruz.</p>
+        <p class="text-sm text-gray-600 mt-2">
+          Dünya standartlarında üretilmiş lider iklimlendirme markalarının yetkili güvencesiyle çalışıyoruz.
+        </p>
       </div>
 
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-        {company.authorizedBrands.map((brand) => (
-          <div class="rounded-2xl border border-gray-200 bg-surface p-5 text-center font-bold text-navy-900 shadow-sm flex items-center justify-center hover:border-brand-500/40 transition-colors">
-            {brand}
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-5 max-w-4xl mx-auto">
+        {brandLogos.map((brand) => (
+          <div class="rounded-xl border border-gray-200/90 bg-white p-4 sm:p-5 h-20 sm:h-24 flex items-center justify-center shadow-xs hover:border-brand-500/50 hover:shadow-sm transition-all group" title={brand.name}>
+            <img
+              src={brand.logo}
+              alt={brand.alt}
+              class="max-h-8 sm:max-h-10 max-w-[85%] object-contain transition-transform duration-200 group-hover:scale-105"
+              loading="lazy"
+            />
           </div>
         ))}
       </div>

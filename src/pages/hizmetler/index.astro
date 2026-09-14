@@ -18,7 +18,7 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
       
       <!-- Semantic Breadcrumb -->
       <nav aria-label="Erişim Yolu" class="mb-4">
-        <ol class="flex items-center gap-2 text-xs text-gray-400 list-none p-0 m-0">
+        <ol class="flex flex-wrap items-center gap-2 text-xs text-gray-400 list-none p-0 m-0">
           <li>
             <a href="/" class="hover:text-white transition-colors">Ana Sayfa</a>
           </li>
@@ -27,7 +27,7 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
         </ol>
       </nav>
 
-      <h1 class="text-3xl sm:text-5xl font-extrabold mt-1.5 leading-tight text-white font-heading">
+      <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold mt-1.5 leading-tight text-white font-heading break-words">
         Hizmetlerimiz & Mühendislik Çözümlerimiz
       </h1>
       <p class="text-sm sm:text-base text-gray-300 max-w-2xl mt-3 leading-relaxed">

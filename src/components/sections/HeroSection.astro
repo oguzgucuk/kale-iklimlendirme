@@ -11,7 +11,7 @@ const { className = '' } = Astro.props;
 
 <section
   id="hero"
-  class={`relative min-h-screen lg:h-screen w-full flex flex-col justify-center items-center overflow-hidden ${className}`}
+  class={`relative min-h-[100dvh] lg:h-screen w-full flex flex-col justify-center items-center overflow-hidden ${className}`}
 >
   <!-- Tam Ekran Arka Plan Görseli (Kurumsal Plaza Çatı VRF Geniş Açı Gün Işığı & Mavi Gökyüzü) -->
   <div class="absolute inset-0 z-0">
@@ -32,36 +32,38 @@ const { className = '' } = Astro.props;
   </div>
 
   <!-- Orta Gövde: Tam Ortalanmış Tipografi, Butonlar ve Metrikler -->
-  <div class="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-10 text-center flex flex-col items-center justify-center">
+  <div class="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-28 pb-8 sm:pb-10 text-center flex flex-col items-center justify-center">
     
     <!-- H1 Başlık (Ortalanmış mimari tipografi) -->
-    <h1 class="font-heading text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12] drop-shadow-md max-w-4xl mx-auto">
+    <h1 class="font-heading text-2xl xs:text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15] drop-shadow-md max-w-4xl mx-auto break-words">
       Klima Satışından <span class="text-brand-400">VRF Merkezi Sistem</span> Projelendirmeye Uçtan Uca Çözüm.
     </h1>
 
     <!-- Açıklama Metni (Ortalanmış) -->
-    <p class="text-base sm:text-lg lg:text-xl text-slate-100 leading-relaxed font-normal max-w-2xl mx-auto mt-5 sm:mt-6 drop-shadow-xs">
+    <p class="text-sm sm:text-lg lg:text-xl text-slate-100 leading-relaxed font-normal max-w-2xl mx-auto mt-4 sm:mt-6 drop-shadow-xs">
       Hastaneler, plazalar, kamu binaları ve nitelikli konut projelerinde doğru kapasite hesabı, 40 bar azot testli garantili borulama ve yetkili servis güvencesi.
     </p>
 
     <!-- Hizmet Alanları Şeridi (Düz çizgiyle ayrılmış rafine tipografi) -->
-    <div class="mt-4 sm:mt-4.5 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs sm:text-[13px] font-semibold text-slate-200 tracking-wide drop-shadow-xs">
-      <span class="text-white">VRF Merkezi Sistemler</span>
-      <span class="text-white/35 font-light" aria-hidden="true">|</span>
-      <span class="text-white">Klima Satış, Bakım, Onarım</span>
-      <span class="text-white/35 font-light" aria-hidden="true">|</span>
-      <span class="text-white">Klima Altyapı Sistemleri</span>
+    <div class="mt-3.5 sm:mt-4.5 flex flex-wrap items-center justify-center gap-x-2 sm:gap-x-3 gap-y-1 text-xs sm:text-[13px] font-semibold text-slate-200 tracking-wide drop-shadow-xs">
+      <span class="text-white whitespace-nowrap">VRF Merkezi Sistemler</span>
+      <span class="text-white/40 font-light hidden xs:inline" aria-hidden="true">|</span>
+      <span class="text-white whitespace-nowrap">Klima Satış, Bakım, Onarım</span>
+      <span class="text-white/40 font-light hidden xs:inline" aria-hidden="true">|</span>
+      <span class="text-white whitespace-nowrap">Klima Altyapı Sistemleri</span>
     </div>
 
     <!-- Eylem Butonları (Ortalanmış) -->
-    <div class="pt-6 sm:pt-7 flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
-      <FastQuoteModal client:load />
+    <div class="pt-5 sm:pt-7 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-md sm:max-w-none mx-auto">
+      <div class="w-full sm:w-auto">
+        <FastQuoteModal client:load />
+      </div>
 
       <a
         href={`tel:${company.phoneRaw}`}
-        class="inline-flex items-center justify-center px-6 py-3.5 text-xs sm:text-sm font-bold text-white bg-navy-900/60 hover:bg-navy-900/80 rounded-lg border border-white/25 transition-all gap-2.5 backdrop-blur-md shadow-sm"
+        class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 text-xs sm:text-sm font-bold text-white bg-navy-900/60 hover:bg-navy-900/80 rounded-lg border border-white/25 transition-all gap-2.5 backdrop-blur-md shadow-sm whitespace-nowrap"
       >
-        <svg class="w-4 h-4 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-4 h-4 text-brand-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
         </svg>
         <span>Hemen Arayın: <strong>{company.phone}</strong></span>
@@ -69,19 +71,19 @@ const { className = '' } = Astro.props;
     </div>
 
     <!-- Mimari Metrik Çubuğu (Ortalanmış, hairline zemin çizgili) -->
-    <div class="pt-8 mt-8 border-t border-white/20 w-full max-w-xl mx-auto">
-      <div class="grid grid-cols-3 gap-2 divide-x divide-white/20 text-center">
-        <div class="px-2">
-          <div class="font-heading text-2xl sm:text-3xl font-extrabold text-brand-400 tracking-tight drop-shadow-xs">15+ Yıl</div>
-          <div class="text-[11px] sm:text-xs text-slate-200 font-medium mt-0.5">Sektörel Deneyim</div>
+    <div class="pt-6 sm:pt-8 mt-6 sm:mt-8 border-t border-white/20 w-full max-w-xl mx-auto">
+      <div class="grid grid-cols-3 gap-1.5 sm:gap-2 divide-x divide-white/20 text-center">
+        <div class="px-1 sm:px-2">
+          <div class="font-heading text-xl sm:text-3xl font-extrabold text-brand-400 tracking-tight drop-shadow-xs">15+ Yıl</div>
+          <div class="text-[10px] sm:text-xs text-slate-200 font-medium mt-0.5"><span class="hidden sm:inline">Sektörel </span>Deneyim</div>
         </div>
-        <div class="px-2">
-          <div class="font-heading text-2xl sm:text-3xl font-extrabold text-white tracking-tight drop-shadow-xs">450+</div>
-          <div class="text-[11px] sm:text-xs text-slate-200 font-medium mt-0.5">Tamamlanan Proje</div>
+        <div class="px-1 sm:px-2">
+          <div class="font-heading text-xl sm:text-3xl font-extrabold text-white tracking-tight drop-shadow-xs">450+</div>
+          <div class="text-[10px] sm:text-xs text-slate-200 font-medium mt-0.5">Tamamlanan Proje</div>
         </div>
-        <div class="px-2">
-          <div class="font-heading text-2xl sm:text-3xl font-extrabold text-slate-100 tracking-tight drop-shadow-xs">8 Marka</div>
-          <div class="text-[11px] sm:text-xs text-slate-200 font-medium mt-0.5">Yetkili Çözüm Ortaklığı</div>
+        <div class="px-1 sm:px-2">
+          <div class="font-heading text-xl sm:text-3xl font-extrabold text-slate-100 tracking-tight drop-shadow-xs">8 Marka</div>
+          <div class="text-[10px] sm:text-xs text-slate-200 font-medium mt-0.5"><span class="hidden sm:inline">Yetkili </span>Çözüm Ortağı</div>
         </div>
       </div>
     </div>

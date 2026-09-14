@@ -28,6 +28,17 @@ const trustPoints = [
       'Tamamladığımız tüm mekanik tesisat ve cihaz montajı uygulamalarımız resmi servis ve işçilik garantisi altındadır.',
   },
 ];
+
+const brandLogos = [
+  { name: 'Daikin', logo: '/images/brand/daikin.webp', alt: 'Daikin VRV ve Klima Sistemleri' },
+  { name: 'Mitsubishi Electric', logo: '/images/brand/mitsubishi.png', alt: 'Mitsubishi Electric Klima Çözümleri' },
+  { name: 'LG', logo: '/images/brand/lg.png', alt: 'LG Multi V ve VRF Sistemleri' },
+  { name: 'Samsung', logo: '/images/brand/samsung.svg', alt: 'Samsung Ticari ve Bireysel Klimalar' },
+  { name: 'Carrier', logo: '/images/brand/carrier.webp', alt: 'Carrier İklimlendirme Teknolojileri' },
+  { name: 'Gree', logo: '/images/brand/gree.svg', alt: 'Gree VRF ve Klima Sistemleri' },
+  { name: 'Arçelik', logo: '/images/brand/arcelik.webp', alt: 'Arçelik Kurumsal İklimlendirme' },
+  { name: 'Midea', logo: '/images/brand/midea.webp', alt: 'Midea İklimlendirme Sistemleri' },
+];
 ---
 
 <section class={`py-16 sm:py-24 bg-white border-b border-gray-100 ${className}`}>
@@ -48,15 +59,23 @@ const trustPoints = [
         </p>
 
         <!-- Authorized Brands Showcase -->
-        <div class="pt-4 border-t border-gray-100">
-          <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-3">
+        <div class="pt-5 border-t border-gray-100">
+          <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-3.5">
             Satış ve Montajını Yaptığımız Markalar
           </span>
-          <div class="flex flex-wrap gap-2">
-            {company.authorizedBrands.map((brand) => (
-              <span class="inline-flex items-center px-3 py-1.5 rounded-md bg-slate-50 text-xs font-bold text-navy-950 border border-gray-200">
-                {brand}
-              </span>
+          <div class="grid grid-cols-4 gap-2 sm:gap-2.5">
+            {brandLogos.map((brand) => (
+              <div
+                class="h-11 sm:h-12 bg-white rounded-lg border border-gray-200/90 p-1.5 sm:p-2 flex items-center justify-center hover:border-brand-500/40 hover:shadow-xs transition-all"
+                title={brand.name}
+              >
+                <img
+                  src={brand.logo}
+                  alt={brand.alt}
+                  class="max-h-5 sm:max-h-6 max-w-[85%] object-contain"
+                  loading="lazy"
+                />
+              </div>
             ))}
           </div>
         </div>

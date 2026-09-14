@@ -16,7 +16,7 @@ const currentPath = Astro.url.pathname;
   class={`z-50 w-full transition-all duration-300 ease-out ${
     isTransparent
       ? 'fixed top-0 inset-x-0 bg-transparent text-white border-b border-white/10'
-      : 'sticky top-0 bg-white/95 backdrop-blur-md text-navy-950 border-b border-gray-200/80 shadow-xs'
+      : 'sticky top-0 bg-navy-950/95 backdrop-blur-md text-white border-b border-white/10 shadow-sm'
   }`}
   data-transparent={isTransparent ? 'true' : 'false'}
 >
@@ -26,11 +26,7 @@ const currentPath = Astro.url.pathname;
       
       <!-- Brand Logo & Title (En Sol Üst - Hallmark Architectural Logo) -->
       <a href="/" class="flex items-center gap-2.5 group focus:outline-none shrink-0" aria-label="Kale İklimlendirme Ana Sayfa">
-        <div class={`w-8 h-8 rounded-md flex items-center justify-center transition-all shadow-xs ${
-          isTransparent
-            ? 'bg-navy-950/80 border border-white/20 text-brand-400 group-hover:bg-brand-500 group-hover:text-white'
-            : 'bg-navy-950 text-brand-400 group-hover:bg-brand-500 group-hover:text-white'
-        }`}>
+        <div class="w-8 h-8 rounded-md flex items-center justify-center transition-all shadow-xs bg-navy-900 border border-white/20 text-brand-400 group-hover:bg-brand-500 group-hover:text-white">
           <!-- Industrial HVAC Ventilation Rotor Icon -->
           <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
@@ -38,14 +34,10 @@ const currentPath = Astro.url.pathname;
           </svg>
         </div>
         <div class="flex flex-col">
-          <span class={`text-[15px] sm:text-base font-extrabold tracking-tight leading-tight font-heading ${
-            isTransparent ? 'text-white' : 'text-navy-950'
-          }`}>
+          <span class="text-[15px] sm:text-base font-extrabold tracking-tight leading-tight font-heading text-white">
             KALE <span class="text-brand-400">İKLİMLENDİRME</span>
           </span>
-          <span class={`text-[9.5px] font-sans font-semibold tracking-wider uppercase ${
-            isTransparent ? 'text-slate-300' : 'text-slate-500'
-          }`}>
+          <span class="text-[9.5px] font-sans font-semibold tracking-wider uppercase text-slate-300">
             VRF Sistemleri & Mühendislik
           </span>
         </div>
@@ -65,9 +57,7 @@ const currentPath = Astro.url.pathname;
                   class={`inline-flex items-center gap-1 text-[13px] font-semibold tracking-wide transition-colors ${
                     isActive
                       ? 'text-brand-400 font-bold'
-                      : isTransparent
-                      ? 'text-white/90 hover:text-white'
-                      : 'text-slate-700 hover:text-brand-600'
+                      : 'text-slate-200 hover:text-white'
                   }`}
                 >
                   {link.name}
@@ -102,9 +92,7 @@ const currentPath = Astro.url.pathname;
               class={`text-[13px] font-semibold tracking-wide transition-colors ${
                 isActive
                   ? 'text-brand-400 font-bold'
-                  : isTransparent
-                  ? 'text-white/90 hover:text-white'
-                  : 'text-slate-700 hover:text-brand-600'
+                  : 'text-slate-200 hover:text-white'
               }`}
             >
               {link.name}
@@ -117,11 +105,7 @@ const currentPath = Astro.url.pathname;
       <div class="hidden sm:flex items-center gap-2.5 shrink-0">
         <a
           href={`tel:${company.phoneRaw}`}
-          class={`flex items-center gap-2 px-3.5 py-1.5 text-xs sm:text-[13px] font-bold rounded-md border transition-all ${
-            isTransparent
-              ? 'bg-white/10 hover:bg-white/20 border-white/20 text-white backdrop-blur-xs'
-              : 'bg-slate-100 hover:bg-slate-200 text-navy-950 border-slate-200'
-          }`}
+          class="flex items-center gap-2 px-3.5 py-1.5 text-xs sm:text-[13px] font-bold rounded-md border transition-all bg-white/10 hover:bg-white/20 border-white/20 text-white backdrop-blur-xs whitespace-nowrap"
           title="Doğrudan Arayın"
         >
           <svg class="w-3.5 h-3.5 text-alert shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -134,7 +118,7 @@ const currentPath = Astro.url.pathname;
         <!-- "Keşif Al" Butonu -->
         <a
           href="/iletisim/"
-          class="inline-flex items-center justify-center px-4 py-1.5 text-xs sm:text-[13px] font-bold text-white bg-brand-500 hover:bg-brand-600 rounded-md shadow-xs transition-all"
+          class="inline-flex items-center justify-center px-4 py-1.5 text-xs sm:text-[13px] font-bold text-white bg-brand-500 hover:bg-brand-600 rounded-md shadow-xs transition-all whitespace-nowrap"
         >
           Keşif Al
         </a>
@@ -144,11 +128,7 @@ const currentPath = Astro.url.pathname;
       <div class="flex lg:hidden items-center gap-2">
         <a
           href={`tel:${company.phoneRaw}`}
-          class={`p-1.5 rounded-md border ${
-            isTransparent
-              ? 'text-white bg-white/10 border-white/20'
-              : 'text-navy-950 bg-slate-100 border-slate-200'
-          }`}
+          class="p-1.5 rounded-md border text-white bg-white/10 border-white/20"
           aria-label="Telefonla Arayın"
         >
           <svg class="w-4 h-4 text-alert" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -159,11 +139,7 @@ const currentPath = Astro.url.pathname;
         <button
           type="button"
           id="mobile-menu-toggle"
-          class={`p-1.5 rounded-md focus:outline-none ${
-            isTransparent
-              ? 'text-white hover:bg-white/10'
-              : 'text-navy-950 hover:bg-slate-100'
-          }`}
+          class="p-1.5 rounded-md focus:outline-none text-white hover:bg-white/10"
           aria-label="Menüyü Aç"
           aria-expanded="false"
         >
