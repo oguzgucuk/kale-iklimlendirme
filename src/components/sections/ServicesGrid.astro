@@ -1,5 +1,4 @@
 ---
-import ServiceCard from '@/components/ui/ServiceCard.astro';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -7,34 +6,130 @@ interface Props {
 }
 
 const { services } = Astro.props;
+
+const flagship = services.find((s) => s.id === 'vrf-merkezi-sistem-projelendirme') || services[0];
+const otherServices = services.filter((s) => s.id !== flagship.id);
 ---
 
-<section class="py-14 sm:py-20 bg-surface">
+<section class="py-16 sm:py-24 bg-slate-50/70 border-b border-gray-200">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
-    <!-- Semantic Section Header -->
-    <header class="max-w-3xl mb-10 sm:mb-12">
-      <span class="text-xs font-bold text-brand-600 uppercase tracking-widest block">
-        Hizmetlerimiz
-      </span>
-      <h2 class="text-2xl sm:text-4xl font-extrabold text-navy-900 mt-1.5 leading-tight">
+    <!-- Section Header (Eyebrow-suz, net ve güçlü mühendislik başlığı) -->
+    <header class="max-w-3xl mb-12 sm:mb-16">
+      <h2 class="text-2xl sm:text-4xl font-extrabold text-navy-950 tracking-tight leading-tight font-heading">
         Bireysel ve Endüstriyel İklimlendirme Çözümleri
       </h2>
-      <p class="text-sm sm:text-base text-gray-600 mt-2.5 leading-relaxed">
-        Mekanınızın mimari yapısına en uygun iklimlendirme sistemini projelendiriyor, garantili ve enerji verimli olarak devreye alıyoruz.
+      <p class="text-sm sm:text-base text-slate-600 mt-2.5 leading-relaxed font-normal">
+        Mekanınızın mimari yapısına en uygun iklimlendirme sistemini projelendiriyor, doğru kapasite analizi ve fabrika standartlarında montajla devreye alıyoruz.
       </p>
     </header>
 
-    <!-- Services Grid: Mobile 1 col, Tablet 2 col, Desktop 4 col -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      {services.map((service) => (
-        <ServiceCard
-          title={service.data.title}
-          shortDescription={service.data.shortDescription}
-          slug={service.id}
-          icon={service.data.icon}
-        />
-      ))}
+    <!-- Asymmetric Engineering Showcase: Flagship + Technical Service Matrix -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+      
+      <!-- Sol / Amiral Gemisi: VRF & Merkezi Sistem Projelendirme (lg:col-span-6) -->
+      <article class="lg:col-span-6 rounded-xl bg-navy-950 text-white p-7 sm:p-9 flex flex-col justify-between border border-navy-900 relative overflow-hidden shadow-sm">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-brand-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+        
+        <div class="relative z-10">
+          <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-white/10 text-brand-300 text-xs font-semibold tracking-wide mb-4 border border-white/10">
+            <span>Amiral Mühendislik Alanı</span>
+          </div>
+
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-snug font-heading">
+            <a href={`/hizmetler/${flagship.id}/`} class="hover:text-brand-400 transition-colors">
+              {flagship.data.title}
+            </a>
+          </h3>
+
+          <p class="mt-4 text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
+            {flagship.data.shortDescription}
+          </p>
+
+          <!-- Teknik Mühendislik Standartları Listesi -->
+          <ul class="mt-6 space-y-3 text-xs sm:text-sm text-slate-200 border-t border-white/10 pt-6">
+            <li class="flex items-start gap-2.5">
+              <svg class="h-4 w-4 text-brand-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+              </svg>
+              <span><strong>Hassas Kapasite Hesabı:</strong> Termal yük analiz yazılımlarıyla gereksiz enerji tüketimini önleyen mimari yerleşim.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="h-4 w-4 text-brand-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+              </svg>
+              <span><strong>Azot Testli Borulama:</strong> Çift kademeli derin vakum ve 40 bar azot sızdırmazlık test protokolü.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="h-4 w-4 text-brand-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+              </svg>
+              <span><strong>Çoklu Marka Entegrasyonu:</strong> Mitsubishi Electric, Daikin, Carrier, LG, Arçelik yetkili bayi çözümleri.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="relative z-10 mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center gap-3">
+          <a
+            href={`/hizmetler/${flagship.id}/`}
+            class="inline-flex items-center justify-center px-5 py-2.5 text-xs sm:text-sm font-bold text-navy-950 bg-white hover:bg-slate-100 rounded-lg shadow-sm transition-colors"
+          >
+            <span>Mühendislik Kapsamını İncele</span>
+            <svg class="h-4 w-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+          <a
+            href="/iletisim/"
+            class="inline-flex items-center justify-center px-4 py-2.5 text-xs sm:text-sm font-bold text-white bg-white/10 hover:bg-white/20 border border-white/15 rounded-lg transition-colors"
+          >
+            <span>Ücretsiz Keşif İste</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Sağ / Diğer Teknik Hizmetler Matrisi (lg:col-span-6) -->
+      <div class="lg:col-span-6 flex flex-col justify-between gap-4 sm:gap-5">
+        {otherServices.map((service) => (
+          <article class="group rounded-xl border border-gray-200 bg-white p-6 shadow-xs hover:border-brand-500/40 hover:shadow-sm transition-all flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <h3 class="text-base sm:text-lg font-bold text-navy-950 transition-colors group-hover:text-brand-600 font-heading">
+                  <a href={`/hizmetler/${service.id}/`} class="focus:outline-none">
+                    {service.data.title}
+                  </a>
+                </h3>
+                <span class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider shrink-0 bg-slate-100 px-2 py-0.5 rounded">
+                  Teknik Hizmet
+                </span>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                {service.data.shortDescription}
+              </p>
+            </div>
+
+            <div class="mt-5 pt-3 border-t border-gray-100 flex items-center justify-between text-xs">
+              <a
+                href={`/hizmetler/${service.id}/`}
+                class="inline-flex items-center gap-1 font-bold text-brand-600 hover:text-brand-700 transition-colors"
+                aria-label={`${service.data.title} detaylarını inceleyin`}
+              >
+                <span>Hizmet Detayları</span>
+                <svg class="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </a>
+              <a
+                href="/iletisim/"
+                class="text-slate-500 hover:text-brand-600 font-semibold transition-colors"
+              >
+                Keşif Talep Et
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
     </div>
 
   </div>

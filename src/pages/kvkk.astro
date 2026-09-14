@@ -1,0 +1,101 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import company from '@/data_files/company.json';
+
+const lastUpdated = "14 Eylül 2026";
+---
+
+<MainLayout
+  title={`KVKK Aydınlatma Metni & Gizlilik Politikası | ${company.companyName}`}
+  description="Kale İklimlendirme 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) uyarınca aydınlatma metni ve gizlilik ilkeleri."
+>
+  <header class="bg-navy-900 text-white py-12 sm:py-16 border-b border-navy-950">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav aria-label="Erişim Yolu" class="mb-4">
+        <ol class="flex items-center gap-2 text-xs text-gray-400 list-none p-0 m-0">
+          <li>
+            <a href="/" class="hover:text-white transition-colors">Ana Sayfa</a>
+          </li>
+          <li aria-hidden="true" class="text-gray-600">/</li>
+          <li class="text-brand-400 font-semibold" aria-current="page">KVKK & Gizlilik</li>
+        </ol>
+      </nav>
+
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+        Kişisel Verilerin Korunması ve Aydınlatma Metni
+      </h1>
+      <p class="text-sm text-gray-300 mt-2">
+        Son Güncelleme: {lastUpdated}
+      </p>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+    <div class="bg-white rounded-xl border border-gray-200 p-6 sm:p-10 shadow-sm space-y-8 text-gray-700 text-sm sm:text-base leading-relaxed">
+      
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-navy-900 border-b border-gray-100 pb-2">
+          1. Veri Sorumlusunun Kimliği
+        </h2>
+        <p>
+          6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) uyarınca, <strong>{company.legalName}</strong> (“Kale İklimlendirme”) olarak, veri sorumlusu sıfatıyla, kişisel verilerinizi kanuna ve dürüstlük kurallarına uygun olarak işlemekteyiz.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-navy-900 border-b border-gray-100 pb-2">
+          2. İşlenen Kişisel Veriler ve Toplama Yöntemi
+        </h2>
+        <p>
+          Web sitemizde bulunan "Hızlı Keşif Al", "İletişim & Teklif Formu" veya doğrudan WhatsApp / telefon görüşmelerimiz aracılığıyla tarafımıza ilettiğiniz;
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5 text-gray-600">
+          <li><strong>Kimlik Bilgileri:</strong> Adınız ve soyadınız,</li>
+          <li><strong>İletişim Bilgileri:</strong> Telefon numaranız, e-posta adresiniz, keşif yapılacak mekanın adres/ilçe bilgisi,</li>
+          <li><strong>Müşteri İşlem & Talep Bilgileri:</strong> İklimlendirme talebiniz, mekan türü (daire, ofis, fabrika, vb.) ve proje notlarınız.</li>
+        </ul>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-navy-900 border-b border-gray-100 pb-2">
+          3. Kişisel Verilerin İşlenme Amaçları
+        </h2>
+        <p>Toplanan kişisel verileriniz aşağıdaki amaçlarla sınırlı olarak işlenmektedir:</p>
+        <ul class="list-disc pl-5 space-y-1.5 text-gray-600">
+          <li>Talebiniz doğrultusunda ücretsiz yerinde keşif ve teknik kapasite hesabı organize edilmesi,</li>
+          <li>VRF, split klima satışı veya arıza/bakım hizmeti için fiyat teklifinin hazırlanması ve tarafınıza iletilmesi,</li>
+          <li>Satış sonrası montaj, garanti takibi ve teknik destek süreçlerinin yürütülmesi,</li>
+          <li>Müşteri memnuniyetinin ölçülmesi ve yasal yükümlülüklerin yerine getirilmesi.</li>
+        </ul>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-navy-900 border-b border-gray-100 pb-2">
+          4. Kişisel Verilerin Aktarılması
+        </h2>
+        <p>
+          Kişisel verileriniz, açık rızanız olmaksızın veya KVKK’nın 8. ve 9. maddelerinde belirtilen yasal istisnalar haricinde hiçbir üçüncü taraf kişi veya kuruluşa ticari amaçlarla satılmaz, kiralanmaz veya aktarılmaz. Yalnızca keşif ve montaj operasyonlarını gerçekleştiren yetkili teknik saha ekiplerimizle ve yasal bir zorunluluk halinde yetkili kamu kurumlarıyla paylaşılabilir.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-navy-900 border-b border-gray-100 pb-2">
+          5. Çerezler (Cookies) ve İzleme Politikası
+        </h2>
+        <p>
+          Web sitemiz temel işlevselliği sağlamak ve kullanıcı deneyimini iyileştirmek amacıyla teknik çerezler kullanmaktadır. Kişisel verilerinizi izinsiz depolayan veya üçüncü şahıs reklam ağlarına aktaran agresif takip çerezleri kullanılmamaktadır.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-navy-900 border-b border-gray-100 pb-2">
+          6. KVKK Kapsamındaki Haklarınız
+        </h2>
+        <p>
+          KVKK’nın 11. maddesi uyarınca veri sahibi olarak; verilerinizin işlenip işlenmediğini öğrenme, işlenmişse bilgi talep etme, eksik veya yanlış işlenmişse düzeltilmesini isteme ve silinmesini talep etme haklarına sahipsiniz. Taleplerinizi <a href={`mailto:${company.email}`} class="text-brand-600 font-bold hover:underline">{company.email}</a> adresimiz üzerinden iletebilirsiniz.
+        </p>
+      </section>
+
+    </div>
+  </main>
+</MainLayout>

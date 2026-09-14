@@ -27,10 +27,7 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
         </ol>
       </nav>
 
-      <span class="text-xs font-bold text-brand-400 uppercase tracking-widest block">
-        Uçtan Uca İklimlendirme
-      </span>
-      <h1 class="text-3xl sm:text-5xl font-extrabold mt-1.5 leading-tight text-white">
+      <h1 class="text-3xl sm:text-5xl font-extrabold mt-1.5 leading-tight text-white font-heading">
         Hizmetlerimiz & Mühendislik Çözümlerimiz
       </h1>
       <p class="text-sm sm:text-base text-gray-300 max-w-2xl mt-3 leading-relaxed">
@@ -40,11 +37,11 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
   </header>
 
   <!-- Main Content: Services Grid -->
-  <section class="py-14 sm:py-20 bg-surface">
+  <section class="py-16 sm:py-24 bg-surface">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <header class="max-w-3xl mb-10 sm:mb-12">
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-900 leading-tight">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-950 leading-tight font-heading">
           Uzmanlık Alanlarımız
         </h2>
         <p class="text-sm sm:text-base text-gray-600 mt-2">
@@ -68,35 +65,38 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
   </section>
 
   <!-- Engineering Guarantee Highlight Section -->
-  <section class="py-14 sm:py-16 bg-white border-t border-gray-200">
+  <section class="py-16 sm:py-20 bg-white border-t border-gray-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <article class="p-6 rounded-2xl bg-surface border border-gray-200">
-          <div class="h-10 w-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center mb-4 font-bold text-lg" aria-hidden="true">
-            01
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        <article class="p-6 rounded-xl bg-slate-50/70 border border-gray-200">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="h-2 w-2 rounded-full bg-brand-500"></span>
+            <span class="text-xs font-mono font-bold text-slate-400">STANDART 01</span>
           </div>
-          <h3 class="text-lg font-bold text-navy-900 mb-2">Doğru Kapasite Analizi</h3>
-          <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+          <h3 class="text-lg font-bold text-navy-950 mb-2 font-heading">Doğru Kapasite Analizi</h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
             Ezbere cihaz seçimi yüksek elektrik faturası ve yetersiz soğutma getirir. Termal yük hesabı ile tam ihtiyaç duyulan kapasiteyi belirliyoruz.
           </p>
         </article>
 
-        <article class="p-6 rounded-2xl bg-surface border border-gray-200">
-          <div class="h-10 w-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center mb-4 font-bold text-lg" aria-hidden="true">
-            02
+        <article class="p-6 rounded-xl bg-slate-50/70 border border-gray-200">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="h-2 w-2 rounded-full bg-brand-500"></span>
+            <span class="text-xs font-mono font-bold text-slate-400">STANDART 02</span>
           </div>
-          <h3 class="text-lg font-bold text-navy-900 mb-2">Sertifikalı Uygulama</h3>
-          <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+          <h3 class="text-lg font-bold text-navy-950 mb-2 font-heading">Sertifikalı Uygulama</h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
             Azot sızdırmazlık testleri ve derin vakum prosedürleri uygulanarak cihazların kompresör ömrü ve fabrika verimliliği korunur.
           </p>
         </article>
 
-        <article class="p-6 rounded-2xl bg-surface border border-gray-200">
-          <div class="h-10 w-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center mb-4 font-bold text-lg" aria-hidden="true">
-            03
+        <article class="p-6 rounded-xl bg-slate-50/70 border border-gray-200">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="h-2 w-2 rounded-full bg-brand-500"></span>
+            <span class="text-xs font-mono font-bold text-slate-400">STANDART 03</span>
           </div>
-          <h3 class="text-lg font-bold text-navy-900 mb-2">Orijinal Parça & 7/24 Destek</h3>
-          <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+          <h3 class="text-lg font-bold text-navy-950 mb-2 font-heading">Orijinal Parça & 7/24 Destek</h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
             Yetkili bayiliklerimiz sayesinde tüm yedek parça ve montaj malzemeleri %100 orijinal ve üretici garantili olarak temin edilir.
           </p>
         </article>

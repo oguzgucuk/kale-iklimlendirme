@@ -1,72 +1,74 @@
 ---
 const steps = [
   {
-    step: '01',
-    title: 'Ücretsiz Keşif & Talep',
-    description: 'Mekanınızı yerinde ziyaret ediyor, ısı kayıplarını ve mimari borulama güzergahlarını inceliyoruz.',
+    phase: '01',
+    title: 'Yerinde Keşif & Yük Hesabı',
+    description: 'Mekanınızı yerinde ziyaret ediyor, ısı kayıp ve kazançlarını hesaplayarak mimari borulama güzergahlarını belirliyoruz.',
   },
   {
-    step: '02',
-    title: 'Mühendislik & Teklif',
-    description: 'VRF / klima kapasite hesaplarını mühendislik yazılımlarıyla çıkarıp alternatifli şeffaf teklif sunuyoruz.',
+    phase: '02',
+    title: 'Mühendislik & Şeffaf Proje',
+    description: 'VRF ve multi sistem kapasite seçimlerini simülasyon yazılımlarıyla modelleyip alternatifli teknik teklif sunuyoruz.',
   },
   {
-    step: '03',
-    title: 'Sertifikalı Montaj & Test',
-    description: 'Azot basınç ve vakum testlerinin ardından sistemi üretici standartlarında çalışır vaziyette teslim ediyoruz.',
+    phase: '03',
+    title: 'Azot Testli Sertifikalı Montaj',
+    description: '40 bar azot sızdırmazlık testi ve çift kademeli derin vakum uygulayarak sistemi fabrika standartlarında kuruyoruz.',
   },
   {
-    step: '04',
-    title: '7/24 Servis & Bakım',
-    description: 'Düzenli periyodik hijyenik bakım sözleşmeleri ve acil arıza desteği ile cihaz ömrünü koruyoruz.',
+    phase: '04',
+    title: 'Devreye Alma & Garanti',
+    description: 'Performans ve hava debisi ölçümlerinin ardından resmi garanti belgeleri ve periyodik bakım takvimiyle teslim ediyoruz.',
   },
 ];
 ---
 
-<section class="py-14 sm:py-20 bg-surface border-t border-gray-200">
+<section class="py-16 sm:py-24 bg-slate-50/70 border-t border-b border-gray-200">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
-    <!-- Section Header -->
-    <header class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-      <span class="text-xs font-bold text-brand-600 uppercase tracking-widest block">
-        Çalışma Modelimiz
-      </span>
-      <h2 class="text-2xl sm:text-4xl font-extrabold text-navy-900 mt-1.5 leading-tight">
-        4 Adımda Kusursuz İklimlendirme Süreci
+    <!-- Section Header (Left-aligned, architectural) -->
+    <header class="max-w-3xl mb-12 sm:mb-16">
+      <h2 class="text-2xl sm:text-4xl font-extrabold text-navy-950 tracking-tight leading-tight font-heading">
+        Mühendislik Proje ve Teslim Süreci
       </h2>
-      <p class="text-sm sm:text-base text-gray-600 mt-2.5 leading-relaxed">
-        Projelerimizi ilk keşif aşamasından periyodik bakıma kadar adım adım şeffaf ve profesyonel olarak yürütüyoruz.
+      <p class="text-sm sm:text-base text-slate-600 mt-2.5 leading-relaxed font-normal">
+        İlk keşif randevusundan anahtar teslim devreye almaya kadar her aşamada şeffaf, ölçülebilir ve garantili çalışma modeli.
       </p>
     </header>
 
-    <!-- Semantic Ordered List: ol / li -->
-    <ol class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 list-none p-0 m-0">
-      {steps.map((item) => (
-        <li class="relative flex flex-col justify-between rounded-2xl border border-gray-200/90 bg-white p-6 shadow-sm">
+    <!-- Engineering Milestone Timeline: 4 connected phases -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {steps.map((item, idx) => (
+        <div class="relative flex flex-col justify-between rounded-xl border border-gray-200/90 bg-white p-6 shadow-xs transition-all hover:border-brand-500/40">
           <div>
-            <!-- Step Number Badge -->
-            <div class="flex items-center justify-between mb-4">
-              <span class="text-2xl font-black text-brand-500 font-mono tracking-wider">
-                {item.step}
+            <!-- Top Step Indicator -->
+            <div class="flex items-center justify-between pb-3.5 mb-3.5 border-b border-gray-100">
+              <span class="text-xs font-mono font-bold text-brand-600 tracking-wider">
+                FAZ {item.phase}
               </span>
-              <span class="h-2 w-2 rounded-full bg-brand-200"></span>
+              <span class="text-[11px] font-semibold text-slate-400">
+                Aşama {idx + 1}/4
+              </span>
             </div>
 
-            <h3 class="text-base sm:text-lg font-bold text-navy-900 leading-snug">
+            <h3 class="text-base sm:text-lg font-bold text-navy-950 leading-snug font-heading">
               {item.title}
             </h3>
 
-            <p class="mt-2 text-xs sm:text-sm text-gray-600 leading-relaxed">
+            <p class="mt-2.5 text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
               {item.description}
             </p>
           </div>
 
-          <div class="mt-5 pt-3 border-t border-gray-100 flex items-center gap-1.5 text-[11px] font-semibold text-brand-600">
-            <span>Standart Süreç</span>
+          <div class="mt-6 pt-3 border-t border-gray-100 flex items-center gap-1.5 text-[11px] font-semibold text-slate-500">
+            <svg class="h-3.5 w-3.5 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>Doğrulanmış Prosedür</span>
           </div>
-        </li>
+        </div>
       ))}
-    </ol>
+    </div>
 
   </div>
 </section>

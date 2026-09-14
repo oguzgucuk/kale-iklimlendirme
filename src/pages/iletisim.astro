@@ -162,25 +162,44 @@ const serviceOptions = rawServices.map((s) => ({
     </div>
   </section>
 
-  <!-- Interactive Google Maps Embed Section -->
-  <section class="py-14 sm:py-16 bg-white border-t border-gray-200" aria-label="Merkez Ofis Haritası">
+  <!-- Service Area & Regional Coverage Map Section -->
+  <section class="py-14 sm:py-16 bg-white border-t border-gray-200" aria-label="Mobil Servis ve Hizmet Bölgelerimiz">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <header class="mb-8 max-w-2xl">
+      <header class="mb-8 max-w-3xl">
         <span class="text-xs font-bold text-brand-600 uppercase tracking-widest block">
-          Lokasyon & Ulaşım
+          Mobil Servis Ağı & Kapsama Alanı
         </span>
         <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-900 mt-1.5">
-          Merkez Ofisimize Ulaşım
+          İstanbul Geneli ve Çevre İllerde Yerinde Keşif & Montaj
         </h2>
-        <p class="text-sm text-gray-600 mt-1.5">
-          Kağıthane merkez ofisimizde projenizi yüz yüze değerlendirmek için randevu alabilirsiniz.
+        <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+          Mobil mühendislik ve montaj ekiplerimizle sabit bir adrese bağlı kalmadan; İstanbul'un tüm ilçelerine, Kocaeli, Tekirdağ ve Bursa sanayi & konut bölgelerine yerinde hizmet sağlıyoruz.
         </p>
       </header>
 
-      <div class="rounded-2xl overflow-hidden border border-gray-200 shadow-sm h-[360px] sm:h-[420px] w-full bg-surface">
+      <!-- Hizmet Bölgesi Rozetleri -->
+      <div class="mb-6 flex flex-wrap gap-2">
+        <span class="px-3 py-1.5 rounded-lg bg-brand-50 border border-brand-500/30 text-xs font-bold text-brand-700">
+          ✓ İstanbul Anadolu Yakası (Tüm İlçeler)
+        </span>
+        <span class="px-3 py-1.5 rounded-lg bg-brand-50 border border-brand-500/30 text-xs font-bold text-brand-700">
+          ✓ İstanbul Avrupa Yakası (Tüm İlçeler)
+        </span>
+        <span class="px-3 py-1.5 rounded-lg bg-slate-100 border border-slate-200 text-xs font-bold text-navy-900">
+          ✓ Kocaeli & Gebze Sanayi Bölgesi
+        </span>
+        <span class="px-3 py-1.5 rounded-lg bg-slate-100 border border-slate-200 text-xs font-bold text-navy-900">
+          ✓ Tekirdağ & Çorlu
+        </span>
+        <span class="px-3 py-1.5 rounded-lg bg-slate-100 border border-slate-200 text-xs font-bold text-navy-900">
+          ✓ Bursa
+        </span>
+      </div>
+
+      <div class="rounded-xl overflow-hidden border border-gray-200 shadow-sm h-[360px] sm:h-[420px] w-full bg-surface">
         <iframe
-          title="Kale İklimlendirme Kağıthane İstanbul Ofis Konumu"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48123.46820256247!2d28.948293999999997!3d41.0858175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab6e31b65e751%3A0xea0e0e37b67b1b36!2zS2HEn8SxdGhhbmUvScSzdGFuYnVs!5e0!3m2!1str!2str!4v1700000000000!5m2!1str!2str"
+          title="Kale İklimlendirme İstanbul ve Marmara Hizmet Bölgesi Haritası"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d385396.32104523315!2d28.675095648834454!3d41.005500511674395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa7040068086b%3A0xe1ccfe98bc01b0d0!2zxLBzdGFuYnVs!5e0!3m2!1str!2str!4v1700000000000!5m2!1str!2str"
           width="100%"
           height="100%"
           style="border:0;"

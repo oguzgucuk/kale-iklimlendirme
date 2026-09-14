@@ -17,6 +17,11 @@ const brands = [
     alt: 'Gree Klima ve İklimlendirme Sistemleri',
   },
   {
+    name: 'LG',
+    logo: '/images/brand/lg.png',
+    alt: 'LG Multi V ve Inverter İklimlendirme Sistemleri',
+  },
+  {
     name: 'Midea',
     logo: '/images/brand/midea.webp',
     alt: 'Midea Ticari ve Bireysel Klimalar',
@@ -44,41 +49,90 @@ const brands = [
 ];
 ---
 
-<section id="markalar" class={`py-12 bg-white border-b border-gray-200/80 ${className}`}>
+<section id="markalar" class={`py-10 sm:py-14 bg-white border-b border-gray-100 overflow-hidden ${className}`}>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <!-- Başlık Bloğu: Açıklama metni başlığın tam altına alındı, 'Markalar' artık tek başına düşmez -->
-    <div class="mb-8 space-y-1.5">
-      <span class="text-xs font-bold text-brand-600 tracking-wider uppercase block">
-        Lider Markalarla Kesintisiz Uyum
+    <!-- Başlık Bloğu -->
+    <div class="mb-6 text-center">
+      <span class="text-xs font-bold text-brand-600 tracking-wider uppercase block mb-1">
+        Yetkili Çözüm Ortakları
       </span>
-      <h2 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-navy-900 leading-tight">
-        Satış, Montaj ve Periyodik Bakımını Gerçekleştirdiğimiz Markalar
+      <h2 class="text-xl sm:text-2xl font-extrabold text-navy-900">
+        Satış, Montaj ve Teknik Servisini Yürüttüğümüz Markalar
       </h2>
-      <p class="text-xs sm:text-sm text-gray-500 font-normal max-w-3xl leading-relaxed pt-1">
-        Tüm montaj ve tesisat işlerimizde orijinal standartlarda malzeme ve üretici standartlarında garantili parçalar kullanılır.
-      </p>
     </div>
 
-    <!-- Marka Logoları Grid (Carrier eklendi, 7 marka responsive dizilim) -->
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3.5 sm:gap-4">
-      {brands.map((brand) => (
-        <div class="group flex items-center justify-center p-3 sm:p-4 bg-surface hover:bg-white rounded-2xl border border-gray-200/90 hover:border-brand-500/50 hover:shadow-lg hover:shadow-brand-500/10 transition-all duration-200 h-24">
-          <img
-            src={brand.logo}
-            alt={brand.alt}
-            class={`w-auto object-contain transition-transform duration-200 group-hover:scale-105 ${
-              brand.name === 'Mitsubishi Electric'
-                ? 'max-h-11 max-w-[135px]'
-                : brand.name === 'Carrier'
-                ? 'max-h-10 max-w-[115px]'
-                : 'max-h-9 max-w-[115px]'
-            }`}
-            loading="lazy"
-          />
+    <!-- Kayan Logo Şeridi: Sitenin genel genişlik sınırları (max-w-7xl) içinde tutulur -->
+    <div class="relative w-full overflow-hidden select-none pointer-events-none">
+      <!-- Sol ve Sağ Yumuşak Geçiş (Fade) Gradyanları -->
+      <div class="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-28 bg-gradient-to-r from-white via-white/90 to-transparent z-10" aria-hidden="true"></div>
+      <div class="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-28 bg-gradient-to-l from-white via-white/90 to-transparent z-10" aria-hidden="true"></div>
+
+      <!-- Kayan Hat (Track) -->
+      <div class="flex w-max items-center py-2">
+        <!-- 1. Grup (Sadece orijinal markalar - ekranda aynı markanın mükerrer görünmesini engeller) -->
+        <div class="flex items-center gap-10 sm:gap-16 pr-10 sm:pr-16 shrink-0 animate-marquee-right">
+          {brands.map((brand) => (
+            <div class="flex items-center justify-center shrink-0">
+              <img
+                src={brand.logo}
+                alt={brand.alt}
+                class={`w-auto object-contain pointer-events-none select-none ${
+                  brand.name === 'Mitsubishi Electric'
+                    ? 'h-8 sm:h-9 max-w-[140px]'
+                    : brand.name === 'Carrier'
+                    ? 'h-7 sm:h-8 max-w-[125px]'
+                    : brand.name === 'LG'
+                    ? 'h-6 sm:h-7 max-w-[85px]'
+                    : brand.name === 'Arçelik'
+                    ? 'h-6 sm:h-7 max-w-[120px]'
+                    : 'h-6 sm:h-7 max-w-[110px]'
+                }`}
+                loading="lazy"
+              />
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
 
+        <!-- 2. Grup (Kusursuz Kesintisiz Döngü İçin Kopya) -->
+        <div class="flex items-center gap-10 sm:gap-16 pr-10 sm:pr-16 shrink-0 animate-marquee-right" aria-hidden="true">
+          {brands.map((brand) => (
+            <div class="flex items-center justify-center shrink-0">
+              <img
+                src={brand.logo}
+                alt={brand.alt}
+                class={`w-auto object-contain pointer-events-none select-none ${
+                  brand.name === 'Mitsubishi Electric'
+                    ? 'h-8 sm:h-9 max-w-[140px]'
+                    : brand.name === 'Carrier'
+                    ? 'h-7 sm:h-8 max-w-[125px]'
+                    : brand.name === 'LG'
+                    ? 'h-6 sm:h-7 max-w-[85px]'
+                    : brand.name === 'Arçelik'
+                    ? 'h-6 sm:h-7 max-w-[120px]'
+                    : 'h-6 sm:h-7 max-w-[110px]'
+                }`}
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   </div>
 </section>
+
+<style>
+  @keyframes marquee-right {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+
+  .animate-marquee-right {
+    animation: marquee-right 30s linear infinite;
+    will-change: transform;
+  }
+</style>

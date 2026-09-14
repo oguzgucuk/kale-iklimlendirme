@@ -4,18 +4,15 @@ import company from '@/data_files/company.json';
 import { getCollection } from 'astro:content';
 
 import HeroSection from '@/components/sections/HeroSection.astro';
-import BrandRibbon from '@/components/sections/BrandRibbon.astro';
 import ServicesGrid from '@/components/sections/ServicesGrid.astro';
 import WhyUsSection from '@/components/sections/WhyUsSection.astro';
 import ProjectsShowcase from '@/components/sections/ProjectsShowcase.astro';
 import ProcessSteps from '@/components/sections/ProcessSteps.astro';
-import TestimonialsSection from '@/components/sections/TestimonialsSection.astro';
 import CtaBanner from '@/components/sections/CtaBanner.astro';
 import { FaqAccordion } from '@/components/ui/FaqAccordion';
 
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
 const featuredProjects = (await getCollection('projects')).filter((p) => p.data.featured);
-const testimonials = await getCollection('testimonials');
 ---
 
 <MainLayout
@@ -25,8 +22,6 @@ const testimonials = await getCollection('testimonials');
   <!-- 1. Hero Section -->
   <HeroSection />
 
-  <!-- 1.5 Brand Trust Ribbon (Gree, Midea, Samsung, Daikin, Arçelik, Mitsubishi) -->
-  <BrandRibbon />
 
   <!-- 2. Services Grid Section -->
   <ServicesGrid services={services} />
@@ -40,26 +35,38 @@ const testimonials = await getCollection('testimonials');
   <!-- 5. Process Steps (How We Work) -->
   <ProcessSteps />
 
-  <!-- 6. Testimonials Section -->
-  <TestimonialsSection testimonials={testimonials} />
 
   <!-- 7. FAQ Section with shadcn Accordion -->
-  <section class="py-14 sm:py-20 bg-surface border-t border-gray-200">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <header class="text-center mb-10 sm:mb-12">
-        <span class="text-xs font-bold text-brand-600 uppercase tracking-widest block">
-          Merak Edilenler
-        </span>
-        <h2 class="text-2xl sm:text-4xl font-extrabold text-navy-900 mt-1.5 leading-tight">
-          Sıkça Sorulan Sorular
-        </h2>
-        <p class="text-sm sm:text-base text-gray-600 mt-2">
-          VRF merkezi sistemler ve iklimlendirme süreçlerimiz hakkında bilmeniz gerekenler.
-        </p>
-      </header>
+  <section class="py-16 sm:py-24 bg-white border-t border-gray-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+        
+        <!-- Sol Sütun: Başlık ve İletişim Yönlendirmesi -->
+        <header class="lg:col-span-4 space-y-3.5">
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-950 tracking-tight leading-tight font-heading">
+            Sıkça Sorulan Sorular
+          </h2>
+          <p class="text-sm text-slate-600 leading-relaxed font-normal">
+            VRF merkezi sistem projelendirme, montaj süreleri ve ücretsiz keşif süreçlerimiz hakkında teknik detaylar.
+          </p>
+          <div class="pt-3">
+            <a
+              href="/iletisim/"
+              class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-600 hover:text-brand-700 transition-colors"
+            >
+              <span>Farklı bir sorunuz mu var? İletişime geçin</span>
+              <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+          </div>
+        </header>
 
-      <div class="rounded-2xl border border-gray-200 bg-white p-6 sm:p-8 shadow-sm">
-        <FaqAccordion client:visible />
+        <!-- Sağ Sütun: Akordeon -->
+        <div class="lg:col-span-8 rounded-xl border border-gray-200/90 bg-slate-50/60 p-6 sm:p-8 shadow-xs">
+          <FaqAccordion client:visible />
+        </div>
+
       </div>
     </div>
   </section>
