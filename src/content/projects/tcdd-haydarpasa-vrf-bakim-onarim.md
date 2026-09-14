@@ -4,7 +4,7 @@ client: "TCDD 1. Bölge Müdürlüğü (Kamu / Ulaştırma)"
 location: "Haydarpaşa / Kadıköy, İstanbul"
 systemType: "Mitsubishi Electric City Multi VRF Merkezi İklimlendirme Grubu"
 summary: "TCDD 1. Bölge Müdürlüğü yerleşkesinde yer alan çift sıra Mitsubishi Electric City Multi VRF çatı dış ünite gruplarının kapsamlı periyodik bakımı, kolektör hat izolasyonu ve sistem performans testi."
-completedDate: 2026-01-20
+completedDate: 2026-03-10
 featured: true
 coverImage: "/images/projects/tcdd-haydarpasa-vrf-1.webp"
 ---

@@ -37,7 +37,11 @@ const { projects } = Astro.props;
     <!-- Projects Grid (3 sütunlu vitrin) -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
       {projects
-        .sort((a, b) => new Date(b.data.completedDate).getTime() - new Date(a.data.completedDate).getTime())
+        .sort((a, b) => {
+          if (a.id === 'tcdd-haydarpasa-vrf-bakim-onarim') return -1;
+          if (b.id === 'tcdd-haydarpasa-vrf-bakim-onarim') return 1;
+          return new Date(b.data.completedDate).getTime() - new Date(a.data.completedDate).getTime();
+        })
         .slice(0, 6)
         .map((project) => (
           <ProjectCard
