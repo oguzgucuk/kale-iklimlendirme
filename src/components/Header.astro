@@ -1,4 +1,5 @@
 ---
+/* Hallmark · component: Header · genre: modern-minimal · system: design.md · nav: N1b · height: 64px */
 import company from '@/data_files/company.json';
 import { navBarLinks } from '@/utils/navigation';
 
@@ -12,80 +13,80 @@ const currentPath = Astro.url.pathname;
 
 <header
   id="main-header"
-  class={`z-50 w-full transition-all duration-300 ${
+  class={`z-50 w-full transition-all duration-300 ease-out ${
     isTransparent
-      ? 'fixed top-0 inset-x-0 bg-transparent text-white border-b border-white/15'
+      ? 'fixed top-0 inset-x-0 bg-transparent text-white border-b border-white/10'
       : 'sticky top-0 bg-white/95 backdrop-blur-md text-navy-950 border-b border-gray-200/80 shadow-xs'
   }`}
   data-transparent={isTransparent ? 'true' : 'false'}
 >
-  <!-- Full-Width Navigation Bar: Logo sol başta, butonlar sağ başta -->
+  <!-- Full-Width Navigation Bar: 64px (h-16) Hallmark Mimari Yükseklik -->
   <div class="w-full px-4 sm:px-8 lg:px-12">
-    <div id="nav-container" class="flex justify-between items-center h-20">
+    <div id="nav-container" class="flex justify-between items-center h-16">
       
-      <!-- Brand Logo & Title (En Sol Üst) -->
-      <a href="/" class="flex items-center gap-3 group focus:outline-none shrink-0">
-        <div class={`w-10 h-10 rounded-lg flex items-center justify-center transition-all shadow-sm ${
+      <!-- Brand Logo & Title (En Sol Üst - Hallmark Architectural Logo) -->
+      <a href="/" class="flex items-center gap-2.5 group focus:outline-none shrink-0" aria-label="Kale İklimlendirme Ana Sayfa">
+        <div class={`w-8 h-8 rounded-md flex items-center justify-center transition-all shadow-xs ${
           isTransparent
-            ? 'bg-navy-950/80 border border-white/25 text-brand-400 group-hover:bg-brand-500 group-hover:text-white'
+            ? 'bg-navy-950/80 border border-white/20 text-brand-400 group-hover:bg-brand-500 group-hover:text-white'
             : 'bg-navy-950 text-brand-400 group-hover:bg-brand-500 group-hover:text-white'
         }`}>
-          <!-- Industrial HVAC Ventilation Icon -->
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <!-- Industrial HVAC Ventilation Rotor Icon -->
+          <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
             <circle cx="12" cy="12" r="3" stroke-width="2" />
           </svg>
         </div>
         <div class="flex flex-col">
-          <span class={`text-base sm:text-lg font-extrabold tracking-tight leading-tight ${
+          <span class={`text-[15px] sm:text-base font-extrabold tracking-tight leading-tight font-heading ${
             isTransparent ? 'text-white' : 'text-navy-950'
           }`}>
             KALE <span class="text-brand-400">İKLİMLENDİRME</span>
           </span>
-          <span class={`text-[10px] font-bold tracking-wider uppercase ${
-            isTransparent ? 'text-slate-300' : 'text-gray-500'
+          <span class={`text-[9.5px] font-mono tracking-wider uppercase ${
+            isTransparent ? 'text-slate-300' : 'text-slate-500'
           }`}>
-            VRF Sistemleri & Klima Mühendisliği
+            VRF Sistemleri & Mühendislik
           </span>
         </div>
       </a>
 
-      <!-- Desktop Nav Links -->
-      <nav class="hidden lg:flex items-center gap-7">
+      <!-- Desktop Nav Links (Ortalanmış ve Rafine Tipografi) -->
+      <nav class="hidden lg:flex items-center gap-6 xl:gap-8" aria-label="Ana Menü">
         {navBarLinks.map((link) => {
           const isActive = currentPath === link.url || (link.url !== '/' && currentPath.startsWith(link.url));
           const hasSublinks = link.sublinks && link.sublinks.length > 0;
 
           if (hasSublinks) {
             return (
-              <div class="relative group py-4">
+              <div class="relative group py-3">
                 <a
                   href={link.url}
-                  class={`inline-flex items-center gap-1 text-sm font-semibold transition-colors ${
+                  class={`inline-flex items-center gap-1 text-[13px] font-semibold tracking-wide transition-colors ${
                     isActive
                       ? 'text-brand-400 font-bold'
                       : isTransparent
                       ? 'text-white/90 hover:text-white'
-                      : 'text-gray-700 hover:text-brand-600'
+                      : 'text-slate-700 hover:text-brand-600'
                   }`}
                 >
                   {link.name}
-                  <svg class="w-3.5 h-3.5 opacity-70 group-hover:opacity-100 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-3 h-3 opacity-70 group-hover:opacity-100 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                   </svg>
                 </a>
 
                 <!-- Dropdown Menu -->
-                <div class="absolute left-0 top-full -mt-1 w-72 bg-navy-950/95 text-white backdrop-blur-md rounded-xl shadow-2xl border border-white/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 p-2 z-50">
+                <div class="absolute left-0 top-full -mt-0.5 w-72 bg-navy-950/95 text-white backdrop-blur-xl rounded-lg shadow-2xl border border-white/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 p-1.5 z-50">
                   <div class="space-y-0.5">
                     {link.sublinks?.map((sub) => (
                       <a
                         href={sub.url}
-                        class="block px-3 py-2 rounded-lg hover:bg-white/10 transition-colors"
+                        class="block px-3 py-2 rounded-md hover:bg-white/10 transition-colors"
                       >
-                        <div class="font-bold text-xs sm:text-sm text-white hover:text-brand-400">{sub.name}</div>
+                        <div class="font-bold text-xs text-white hover:text-brand-400">{sub.name}</div>
                         {sub.description && (
-                          <div class="text-[11px] text-slate-300 mt-0.5 line-clamp-1">{sub.description}</div>
+                          <div class="text-[10.5px] text-slate-300 mt-0.5 line-clamp-1">{sub.description}</div>
                         )}
                       </a>
                     ))}
@@ -98,12 +99,12 @@ const currentPath = Astro.url.pathname;
           return (
             <a
               href={link.url}
-              class={`text-sm font-semibold transition-colors ${
+              class={`text-[13px] font-semibold tracking-wide transition-colors ${
                 isActive
                   ? 'text-brand-400 font-bold'
                   : isTransparent
                   ? 'text-white/90 hover:text-white'
-                  : 'text-gray-700 hover:text-brand-600'
+                  : 'text-slate-700 hover:text-brand-600'
               }`}
             >
               {link.name}
@@ -112,13 +113,13 @@ const currentPath = Astro.url.pathname;
         })}
       </nav>
 
-      <!-- Action Buttons (En Sağ Taraf) -->
-      <div class="hidden sm:flex items-center gap-3 shrink-0">
+      <!-- Action Buttons (En Sağ Taraf - Hallmark Modern Minimal CTA) -->
+      <div class="hidden sm:flex items-center gap-2.5 shrink-0">
         <a
           href={`tel:${company.phoneRaw}`}
-          class={`flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold rounded-lg border transition-all ${
+          class={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-md border transition-all ${
             isTransparent
-              ? 'bg-white/10 hover:bg-white/20 border-white/25 text-white backdrop-blur-xs'
+              ? 'bg-white/10 hover:bg-white/20 border-white/20 text-white backdrop-blur-xs'
               : 'bg-slate-100 hover:bg-slate-200 text-navy-950 border-slate-200'
           }`}
           title="Doğrudan Arayın"
@@ -126,14 +127,14 @@ const currentPath = Astro.url.pathname;
           <svg class="w-3.5 h-3.5 text-alert" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
           </svg>
-          <span class="hidden xl:inline">{company.phone}</span>
+          <span class="hidden xl:inline font-mono">{company.phone}</span>
           <span class="xl:hidden">Hemen Ara</span>
         </a>
 
         <!-- "Keşif Al" Butonu -->
         <a
           href="/iletisim/"
-          class="inline-flex items-center justify-center px-5 py-2 text-xs sm:text-sm font-bold text-white bg-brand-500 hover:bg-brand-600 rounded-lg shadow-sm transition-all"
+          class="inline-flex items-center justify-center px-4 py-1.5 text-xs sm:text-[13px] font-bold text-white bg-brand-500 hover:bg-brand-600 rounded-md shadow-xs transition-all"
         >
           Keşif Al
         </a>
@@ -143,12 +144,12 @@ const currentPath = Astro.url.pathname;
       <div class="flex lg:hidden items-center gap-2">
         <a
           href={`tel:${company.phoneRaw}`}
-          class={`p-2 rounded-lg border ${
+          class={`p-1.5 rounded-md border ${
             isTransparent
-              ? 'text-white bg-white/10 border-white/25'
+              ? 'text-white bg-white/10 border-white/20'
               : 'text-navy-950 bg-slate-100 border-slate-200'
           }`}
-          aria-label="Ara"
+          aria-label="Telefonla Arayın"
         >
           <svg class="w-4 h-4 text-alert" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -158,7 +159,7 @@ const currentPath = Astro.url.pathname;
         <button
           type="button"
           id="mobile-menu-toggle"
-          class={`p-2 rounded-lg focus:outline-none ${
+          class={`p-1.5 rounded-md focus:outline-none ${
             isTransparent
               ? 'text-white hover:bg-white/10'
               : 'text-navy-950 hover:bg-slate-100'
@@ -179,21 +180,21 @@ const currentPath = Astro.url.pathname;
   </div>
 
   <!-- Mobile Dropdown Navigation -->
-  <div id="mobile-menu" class="hidden lg:hidden border-t border-white/15 bg-navy-950/98 text-white px-4 pt-3 pb-6 space-y-2 shadow-2xl backdrop-blur-md">
+  <div id="mobile-menu" class="hidden lg:hidden border-t border-white/10 bg-navy-950/98 text-white px-4 pt-3 pb-6 space-y-2 shadow-2xl backdrop-blur-md">
     {navBarLinks.map((link) => (
       <div>
         <a
           href={link.url}
-          class="block py-2 text-base font-semibold text-white hover:text-brand-400 border-b border-white/10"
+          class="block py-2 text-sm font-semibold text-white hover:text-brand-400 border-b border-white/10"
         >
           {link.name}
         </a>
         {link.sublinks && (
-          <div class="pl-4 py-1 space-y-1 bg-white/5 rounded-lg mt-1">
+          <div class="pl-4 py-1 space-y-1 bg-white/5 rounded-md mt-1">
             {link.sublinks.map((sub) => (
               <a
                 href={sub.url}
-                class="block py-1.5 text-sm text-slate-300 hover:text-brand-400 font-medium"
+                class="block py-1.5 text-xs text-slate-300 hover:text-brand-400 font-medium"
               >
                 {sub.name}
               </a>
@@ -206,9 +207,9 @@ const currentPath = Astro.url.pathname;
     <div class="pt-4 flex flex-col gap-2.5">
       <a
         href={`tel:${company.phoneRaw}`}
-        class="w-full flex items-center justify-center gap-2 py-2.5 text-sm font-bold text-white bg-white/10 hover:bg-white/20 rounded-lg border border-white/20"
+        class="w-full flex items-center justify-center gap-2 py-2.5 text-xs font-bold text-white bg-white/10 hover:bg-white/20 rounded-md border border-white/20 font-mono"
       >
-        <svg class="w-4 h-4 text-alert" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-3.5 h-3.5 text-alert" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
         </svg>
         Hemen Arayın: {company.phone}
@@ -216,7 +217,7 @@ const currentPath = Astro.url.pathname;
 
       <a
         href="/iletisim/"
-        class="w-full text-center py-2.5 text-sm font-bold text-white bg-brand-500 hover:bg-brand-600 rounded-lg shadow-sm"
+        class="w-full text-center py-2 text-xs font-bold text-white bg-brand-500 hover:bg-brand-600 rounded-md shadow-xs"
       >
         Keşif Al
       </a>
@@ -225,6 +226,7 @@ const currentPath = Astro.url.pathname;
 </header>
 
 <script>
+  // Hallmark Discipline: rAF Throttled, Passive Scroll Listener with Boolean-Flip Guard
   const toggleBtn = document.getElementById('mobile-menu-toggle');
   const menu = document.getElementById('mobile-menu');
   const iconOpen = document.getElementById('menu-icon-open');
@@ -241,19 +243,36 @@ const currentPath = Astro.url.pathname;
     });
   }
 
-  // Sayfa kaydırıldığında saydam header'a hafif cam arka plan verme
+  // Scroll Morph Handler (threshold >= 60px to prevent jitter, rAF throttled)
   if (header && header.dataset.transparent === 'true') {
-    const handleScroll = () => {
-      if (window.scrollY > 40) {
-        header.classList.add('bg-navy-950/90', 'backdrop-blur-md', 'shadow-md');
-        header.classList.remove('bg-transparent');
-      } else {
-        header.classList.remove('bg-navy-950/90', 'backdrop-blur-md', 'shadow-md');
-        header.classList.add('bg-transparent');
+    const THRESHOLD = 60;
+    let isScrolled = false;
+    let ticking = false;
+
+    const updateHeader = () => {
+      const nextScrolled = window.scrollY > THRESHOLD;
+      if (nextScrolled !== isScrolled) {
+        isScrolled = nextScrolled;
+        if (isScrolled) {
+          header.classList.add('bg-navy-950/90', 'backdrop-blur-md', 'shadow-md', 'border-white/10');
+          header.classList.remove('bg-transparent', 'border-transparent');
+        } else {
+          header.classList.remove('bg-navy-950/90', 'backdrop-blur-md', 'shadow-md', 'border-white/10');
+          header.classList.add('bg-transparent', 'border-transparent');
+        }
       }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(() => {
+          updateHeader();
+          ticking = false;
+        });
+      }
+    }, { passive: true });
+
+    updateHeader();
   }
 </script>

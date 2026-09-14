@@ -49,11 +49,11 @@ const brands = [
 ];
 ---
 
-<section id="markalar" class={`py-8 sm:py-10 bg-white border-b border-gray-200/80 overflow-hidden ${className}`}>
+<section id="markalar" class={`py-3.5 sm:py-4 bg-white border-b border-gray-200/80 overflow-hidden ${className}`}>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Başlık Bloğu -->
-    <div class="mb-3.5 text-center">
-      <span class="text-[11px] sm:text-xs font-extrabold text-slate-400 uppercase tracking-widest block">
+    <div class="mb-1.5 text-center">
+      <span class="text-[10px] sm:text-[11px] font-extrabold text-slate-400 uppercase tracking-widest block">
         Yetkili Çözüm Ortakları
       </span>
     </div>
@@ -65,9 +65,9 @@ const brands = [
       <div class="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-28 bg-gradient-to-l from-white via-white/90 to-transparent z-10" aria-hidden="true"></div>
 
       <!-- Kayan Hat (Track) -->
-      <div class="flex w-max items-center py-2">
+      <div class="flex w-max items-center py-1">
         <!-- 1. Grup (Sadece orijinal markalar - ekranda aynı markanın mükerrer görünmesini engeller) -->
-        <div class="flex items-center gap-10 sm:gap-16 pr-10 sm:pr-16 shrink-0 animate-marquee-right">
+        <div class="flex items-center gap-10 sm:gap-14 pr-10 sm:pr-14 shrink-0 animate-marquee-right">
           {brands.map((brand) => (
             <div class="flex items-center justify-center shrink-0">
               <img
@@ -75,14 +75,14 @@ const brands = [
                 alt={brand.alt}
                 class={`w-auto object-contain pointer-events-none select-none ${
                   brand.name === 'Mitsubishi Electric'
-                    ? 'h-8 sm:h-9 max-w-[140px]'
+                    ? 'h-6 sm:h-7 max-w-[125px]'
                     : brand.name === 'Carrier'
-                    ? 'h-7 sm:h-8 max-w-[125px]'
+                    ? 'h-5 sm:h-6 max-w-[110px]'
                     : brand.name === 'LG'
-                    ? 'h-6 sm:h-7 max-w-[85px]'
+                    ? 'h-5 sm:h-6 max-w-[75px]'
                     : brand.name === 'Arçelik'
-                    ? 'h-6 sm:h-7 max-w-[120px]'
-                    : 'h-6 sm:h-7 max-w-[110px]'
+                    ? 'h-5 sm:h-6 max-w-[105px]'
+                    : 'h-4 sm:h-5 max-w-[95px]'
                 }`}
                 loading="lazy"
               />
@@ -91,7 +91,7 @@ const brands = [
         </div>
 
         <!-- 2. Grup (Kusursuz Kesintisiz Döngü İçin Kopya) -->
-        <div class="flex items-center gap-10 sm:gap-16 pr-10 sm:pr-16 shrink-0 animate-marquee-right" aria-hidden="true">
+        <div class="flex items-center gap-10 sm:gap-14 pr-10 sm:pr-14 shrink-0 animate-marquee-right" aria-hidden="true">
           {brands.map((brand) => (
             <div class="flex items-center justify-center shrink-0">
               <img
@@ -99,14 +99,14 @@ const brands = [
                 alt={brand.alt}
                 class={`w-auto object-contain pointer-events-none select-none ${
                   brand.name === 'Mitsubishi Electric'
-                    ? 'h-8 sm:h-9 max-w-[140px]'
+                    ? 'h-6 sm:h-7 max-w-[125px]'
                     : brand.name === 'Carrier'
-                    ? 'h-7 sm:h-8 max-w-[125px]'
+                    ? 'h-5 sm:h-6 max-w-[110px]'
                     : brand.name === 'LG'
-                    ? 'h-6 sm:h-7 max-w-[85px]'
+                    ? 'h-5 sm:h-6 max-w-[75px]'
                     : brand.name === 'Arçelik'
-                    ? 'h-6 sm:h-7 max-w-[120px]'
-                    : 'h-6 sm:h-7 max-w-[110px]'
+                    ? 'h-5 sm:h-6 max-w-[105px]'
+                    : 'h-4 sm:h-5 max-w-[95px]'
                 }`}
                 loading="lazy"
               />
