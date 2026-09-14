@@ -44,8 +44,17 @@ const { className = '' } = Astro.props;
       Hastaneler, plazalar, kamu binaları ve nitelikli konut projelerinde doğru kapasite hesabı, 40 bar azot testli garantili borulama ve yetkili servis güvencesi.
     </p>
 
+    <!-- Hizmet Alanları Şeridi (Düz çizgiyle ayrılmış rafine tipografi) -->
+    <div class="mt-4 sm:mt-4.5 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs sm:text-[13px] font-semibold text-slate-200 tracking-wide drop-shadow-xs">
+      <span class="text-white">VRF Merkezi Sistemler</span>
+      <span class="text-white/35 font-light" aria-hidden="true">|</span>
+      <span class="text-white">Klima Satış, Bakım, Onarım</span>
+      <span class="text-white/35 font-light" aria-hidden="true">|</span>
+      <span class="text-white">Klima Altyapı Sistemleri</span>
+    </div>
+
     <!-- Eylem Butonları (Ortalanmış) -->
-    <div class="pt-7 sm:pt-8 flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
+    <div class="pt-6 sm:pt-7 flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
       <FastQuoteModal client:load />
 
       <a
