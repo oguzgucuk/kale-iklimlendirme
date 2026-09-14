@@ -38,7 +38,7 @@ const isHome = Astro.url.pathname === '/';
   </head>
   <body class="flex min-h-full flex-col bg-surface text-navy-900 font-sans selection:bg-brand-500 selection:text-white">
     <!-- Header Navigation -->
-    <Header />
+    <Header isTransparent={isHome} />
 
     <!-- Main Content Area -->
     <main id="main-content" class="flex-grow">
