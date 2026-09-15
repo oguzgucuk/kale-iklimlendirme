@@ -26,6 +26,7 @@ const { className = '' } = Astro.props;
       <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 shrink-0">
         <a
           href="/iletisim/"
+          title="Kale İklimlendirme Ücretsiz Keşif ve Fiyat Teklifi Alın"
           class="inline-flex items-center justify-center px-6 py-3.5 text-sm font-bold text-navy-950 bg-white hover:bg-slate-100 rounded-lg shadow-sm transition-colors"
         >
           <span>Hemen Keşif Talep Edin</span>
@@ -37,7 +38,8 @@ const { className = '' } = Astro.props;
         <a
           href={`https://wa.me/${company.whatsappRaw}?text=${encodeURIComponent(company.defaultWhatsAppMessage)}`}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener noreferrer nofollow"
+          title="WhatsApp Danışma Hattı Üzerinden Anında Yazın"
           class="inline-flex items-center justify-center px-6 py-3.5 text-sm font-bold text-white bg-[#25D366] hover:bg-[#20bd5a] rounded-lg shadow-sm transition-colors gap-2"
         >
           <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">

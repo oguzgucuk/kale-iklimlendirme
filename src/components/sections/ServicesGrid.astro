@@ -37,7 +37,7 @@ const otherServices = services.filter((s) => s.id !== flagship.id);
           </div>
 
           <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-snug font-heading">
-            <a href={`/hizmetler/${flagship.id}/`} class="hover:text-brand-400 transition-colors">
+            <a href={`/hizmetler/${flagship.id}/`} title="VRF / VRV Merkezi Sistem Projelendirme Hizmeti Detayları" class="hover:text-brand-400 transition-colors">
               {flagship.data.title}
             </a>
           </h3>
@@ -72,6 +72,7 @@ const otherServices = services.filter((s) => s.id !== flagship.id);
         <div class="relative z-10 mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
           <a
             href={`/hizmetler/${flagship.id}/`}
+            title="VRF Merkezi Sistem Mühendislik Kapsamı ve Proje Aşamaları"
             class="w-full sm:w-auto inline-flex items-center justify-center px-5 py-2.5 text-xs sm:text-sm font-bold text-navy-950 bg-white hover:bg-slate-100 rounded-lg shadow-sm transition-colors whitespace-nowrap"
           >
             <span>Mühendislik Kapsamını İncele</span>
@@ -81,6 +82,7 @@ const otherServices = services.filter((s) => s.id !== flagship.id);
           </a>
           <a
             href="/iletisim/"
+            title="VRF Projeniz İçin Ücretsiz Yerinde Keşif Talep Edin"
             class="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2.5 text-xs sm:text-sm font-bold text-white bg-white/10 hover:bg-white/20 border border-white/15 rounded-lg transition-colors whitespace-nowrap"
           >
             <span>Ücretsiz Keşif İste</span>
@@ -95,7 +97,7 @@ const otherServices = services.filter((s) => s.id !== flagship.id);
             <div>
               <div class="flex flex-wrap items-start justify-between gap-2 mb-2">
                 <h3 class="text-base sm:text-lg font-bold text-navy-950 transition-colors group-hover:text-brand-600 font-heading">
-                  <a href={`/hizmetler/${service.id}/`} class="focus:outline-none">
+                  <a href={`/hizmetler/${service.id}/`} title={`${service.data.title} Hizmet Detayları`} class="focus:outline-none">
                     {service.data.title}
                   </a>
                 </h3>
@@ -112,6 +114,7 @@ const otherServices = services.filter((s) => s.id !== flagship.id);
               <a
                 href={`/hizmetler/${service.id}/`}
                 class="inline-flex items-center gap-1 font-bold text-brand-600 hover:text-brand-700 transition-colors"
+                title={`${service.data.title} Kapsamı ve Uygulama Detayları`}
                 aria-label={`${service.data.title} detaylarını inceleyin`}
               >
                 <span>Hizmet Detayları</span>
@@ -121,6 +124,7 @@ const otherServices = services.filter((s) => s.id !== flagship.id);
               </a>
               <a
                 href="/iletisim/"
+                title={`${service.data.title} İçin Ücretsiz Keşif Talep Edin`}
                 class="text-slate-500 hover:text-brand-600 font-semibold transition-colors"
               >
                 Keşif Talep Et

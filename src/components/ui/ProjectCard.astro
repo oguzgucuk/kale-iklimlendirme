@@ -16,10 +16,16 @@ const { title, client, location, systemType, summary, slug, coverImage } = Astro
   <div>
     <!-- Cover Image Thumbnail (Temiz, görseli kapatmayan yapı) -->
     {coverImage && (
-      <a href={`/projeler/${slug}/`} class="relative block overflow-hidden rounded-lg mb-4 aspect-[16/10] bg-navy-950/10 group/img">
+      <a
+        href={`/projeler/${slug}/`}
+        title={`${title} - Referans Proje İncelemesi`}
+        class="relative block overflow-hidden rounded-lg mb-4 aspect-[16/10] bg-navy-950/10 group/img"
+      >
         <img
           src={coverImage}
           alt={title}
+          width="600"
+          height="375"
           class="w-full h-full object-cover object-center transition-transform duration-300 group-hover/img:scale-105"
           loading="lazy"
         />
@@ -39,7 +45,11 @@ const { title, client, location, systemType, summary, slug, coverImage } = Astro
 
     <!-- Başlık (Tam metin, kesilme yok) -->
     <h3 class="text-base sm:text-lg font-bold leading-snug text-navy-950">
-      <a href={`/projeler/${slug}/`} class="hover:text-brand-600 transition-colors focus:outline-none">
+      <a
+        href={`/projeler/${slug}/`}
+        title={`${title} - Proje Detayları ve Uygulama Aşamaları`}
+        class="hover:text-brand-600 transition-colors focus:outline-none"
+      >
         {title}
       </a>
     </h3>
@@ -57,6 +67,7 @@ const { title, client, location, systemType, summary, slug, coverImage } = Astro
     </div>
     <a
       href={`/projeler/${slug}/`}
+      title={`${title} Projesini Detaylı İnceleyin`}
       class="inline-flex items-center gap-1 font-bold text-brand-600 hover:text-brand-700 transition-colors shrink-0 self-end sm:self-center ml-auto"
       aria-label={`${title} projesini detaylı inceleyin`}
     >
