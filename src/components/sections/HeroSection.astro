@@ -15,15 +15,27 @@ const { className = '' } = Astro.props;
 >
   <!-- Tam Ekran Arka Plan Görseli (Kurumsal Plaza Çatı VRF Geniş Açı Gün Işığı & Mavi Gökyüzü) -->
   <div class="absolute inset-0 z-0">
-    <img
-      src="/images/hero/hero-tcdd-fullscreen-daylight.jpg"
-      alt="Kurumsal TCDD Haydarpaşa Çatı VRF Merkezi Sistem Tesisatı - Kale İklimlendirme"
-      width="1920"
-      height="1080"
-      class="w-full h-full object-cover object-center"
-      fetchpriority="high"
-      loading="eager"
-    />
+    <picture>
+      <source
+        media="(max-width: 768px)"
+        srcset="/images/hero/hero-tcdd-fullscreen-daylight-mobile.webp"
+        type="image/webp"
+      />
+      <source
+        srcset="/images/hero/hero-tcdd-fullscreen-daylight.webp"
+        type="image/webp"
+      />
+      <img
+        src="/images/hero/hero-tcdd-fullscreen-daylight.webp"
+        alt="Kurumsal TCDD Haydarpaşa Çatı VRF Merkezi Sistem Tesisatı - Kale İklimlendirme"
+        width="1376"
+        height="768"
+        class="w-full h-full object-cover object-center"
+        fetchpriority="high"
+        loading="eager"
+        decoding="async"
+      />
+    </picture>
     
     <!-- Üst Gradyan: Şeffaf Header'ın (Logo, Navigasyon, Butonlar) gökyüzü üzerinde jilet gibi okunmasını sağlar -->
     <div class="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-navy-950/85 via-navy-950/45 to-transparent pointer-events-none" aria-hidden="true"></div>
@@ -58,7 +70,7 @@ const { className = '' } = Astro.props;
     <!-- Eylem Butonları (Ortalanmış) -->
     <div class="pt-5 sm:pt-7 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-md sm:max-w-none mx-auto">
       <div class="w-full sm:w-auto">
-        <FastQuoteModal client:load />
+        <FastQuoteModal client:idle />
       </div>
 
       <a
