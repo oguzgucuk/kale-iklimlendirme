@@ -1,7 +1,7 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro';
 import company from '@/data_files/company.json';
-import { ContactForm } from '@/components/ui/ContactForm';
+import ContactForm from '@/components/ui/ContactForm.astro';
 import { getCollection } from 'astro:content';
 
 const rawServices = await getCollection('services');
@@ -155,7 +155,6 @@ const serviceOptions = rawServices.map((s) => ({
           <ContactForm
             services={serviceOptions}
             whatsappRaw={company.whatsappRaw}
-            client:load
           />
         </main>
 

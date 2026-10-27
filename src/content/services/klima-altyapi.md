@@ -2,7 +2,7 @@
 title: "Klima Altyapı ve Tesisat İşleri"
 shortDescription: "Kaba inşaat ve tadilat aşamasında sıva altı bakır borulama, sinyal kablolama ve yoğuşma drenaj hatları."
 icon: "pipes"
-order: 4
+order: 5
 ---
 
 ## Sıva Altı Bakır Boru ve Drenaj Altyapı Mühendisliği

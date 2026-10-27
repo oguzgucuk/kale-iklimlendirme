@@ -15,6 +15,7 @@ export const navBarLinks: NavLink[] = [
       { name: 'Klima Satışı', url: '/hizmetler/klima-satisi/', description: 'Bireysel ve ticari inverter klima modelleri' },
       { name: 'VRF Merkezi Sistemler', url: '/hizmetler/vrf-merkezi-sistem-projelendirme/', description: 'Oteller, plazalar ve fabrikalar için mühendislik çözümleri' },
       { name: 'Arıza, Bakım & Onarım', url: '/hizmetler/ariza-bakim-onarim/', description: '7/24 teknik servis ve periyodik hijyenik bakım' },
+      { name: 'UPS & Sistem Odası Soğutma', url: '/hizmetler/ups-sistem-odasi-sogutma/', description: 'Kesintisiz güç ve akü odaları için hassas kontrollü klima çözümleri' },
       { name: 'Klima Altyapı Tesisatı', url: '/hizmetler/klima-altyapi/', description: 'İnşaat aşaması bakır boru ve drenaj hatları' },
     ],
   },
@@ -27,6 +28,7 @@ export const footerLinks = {
   services: [
     { name: 'VRF Merkezi Sistem Projelendirme', url: '/hizmetler/vrf-merkezi-sistem-projelendirme/' },
     { name: 'Kurumsal Klima Satışı', url: '/hizmetler/klima-satisi/' },
+    { name: 'UPS & Sistem Odası Soğutma', url: '/hizmetler/ups-sistem-odasi-sogutma/' },
     { name: 'Periyodik Bakım ve Onarım', url: '/hizmetler/ariza-bakim-onarim/' },
     { name: 'Bakır Boru Altyapı Tesisatı', url: '/hizmetler/klima-altyapi/' },
   ],

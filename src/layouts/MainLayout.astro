@@ -16,11 +16,34 @@ interface Props {
 
 const { title, description, ogImage, structuredData, customWhatsAppMessage, noindex = false } = Astro.props;
 const isHome = Astro.url.pathname === '/';
+
+const gtmId = import.meta.env.PUBLIC_GTM_ID;
+const gaId = import.meta.env.PUBLIC_GA_ID;
 ---
 
 <!doctype html>
 <html lang="tr" class="h-full antialiased scroll-smooth">
   <head>
+    {gtmId && (
+      <!-- Google Tag Manager -->
+      <script is:inline define:vars={{ gtmId }}>
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer',gtmId);
+      </script>
+    )}
+    {!gtmId && gaId && (
+      <!-- Google Analytics 4 (gtag.js) -->
+      <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+      <script is:inline define:vars={{ gaId }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', gaId);
+      </script>
+    )}
     <Meta
       title={title}
       description={description}
@@ -37,6 +60,18 @@ const isHome = Astro.url.pathname === '/';
     />
   </head>
   <body class="flex min-h-full flex-col bg-surface text-navy-900 font-sans selection:bg-brand-500 selection:text-white">
+    {gtmId && (
+      <!-- Google Tag Manager (noscript) -->
+      <noscript>
+        <iframe
+          src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+          height="0"
+          width="0"
+          style="display:none;visibility:hidden"
+        ></iframe>
+      </noscript>
+    )}
+
     <!-- Header Navigation -->
     <Header isTransparent={isHome} />
 
@@ -54,6 +89,41 @@ const isHome = Astro.url.pathname === '/';
     <!-- Preline UI JavaScript Initialization -->
     <script>
       import 'preline/preline';
+    </script>
+
+    <!-- Conversion & Lead Tracking Dispatcher (Google Ads & Analytics Ready) -->
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', function () {
+        window.dataLayer = window.dataLayer || [];
+
+        // Track Phone Call Clicks
+        document.querySelectorAll('a[href^="tel:"]').forEach(function (el) {
+          el.addEventListener('click', function () {
+            var tel = el.getAttribute('href');
+            window.dataLayer.push({
+              event: 'phone_call_click',
+              conversion_type: 'phone_call',
+              destination: tel,
+            });
+            if (typeof window.gtag === 'function') {
+              window.gtag('event', 'phone_call_click', { phone_number: tel });
+            }
+          });
+        });
+
+        // Track WhatsApp Clicks
+        document.querySelectorAll('a[href*="wa.me"]').forEach(function (el) {
+          el.addEventListener('click', function () {
+            window.dataLayer.push({
+              event: 'whatsapp_click',
+              conversion_type: 'whatsapp_chat',
+            });
+            if (typeof window.gtag === 'function') {
+              window.gtag('event', 'whatsapp_click', { channel: 'whatsapp' });
+            }
+          });
+        });
+      });
     </script>
   </body>
 </html>

@@ -20,6 +20,8 @@ Mekanınız için klima alırken yapılan en büyük hata yalnızca metrekareye 
 - **Multi Inverter Split Sistemler:** Dış cephesinde yeterli yeri olmayan binalar için tek bir dış üniteye 2, 3, 4 veya 5 adet bağımsız iç ünite (duvar veya kaset tipi) bağlama imkanı.
 - **Gizli Tavan (Kanallı) Klimalar:** Lüks rezidans ve otellerde yalnızca zarif menfezlerin göründüğü, tüm cihaz ve borulamanın asma tavan içine gizlendiği premium mimari klimalar.
 - **Salon Tipi Ticari Klimalar:** Yüksek tavanlı geniş alanlar, toplantı ve düğün salonları, showroomlar ve ibadethaneler için yüksek hava sirkülasyonu sağlayan dayanıklı dik tip sistemler.
+- **VRF / VRV Merkezi Sistem Klimaları:** Plaza, otel ve kurumsal binalar için tek dış üniteye onlarca iç ünite bağlayan mühendislik çözümü. Detaylar için [VRF Merkezi Sistemler](/hizmetler/vrf-merkezi-sistem-projelendirme/) sayfamızı inceleyebilirsiniz.
+- **UPS & Sistem Odası Klimaları:** Kesintisiz güç kaynakları ve sunucu odaları için N+1 yedekli, kış kitli hassas soğutma çözümleri. Detaylar için [UPS Odası Soğutma](/hizmetler/ups-sistem-odasi-sogutma/) sayfamızı inceleyebilirsiniz.
 
 ---
 

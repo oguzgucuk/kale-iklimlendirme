@@ -32,6 +32,9 @@ const matchingProjects = allProjects
     if (service.id === 'klima-satisi') {
       return text.includes('satış') || text.includes('montaj') || text.includes('split') || text.includes('kaset') || text.includes('salon');
     }
+    if (service.id === 'ups-sistem-odasi-sogutma') {
+      return text.includes('vrf') || text.includes('bakım') || text.includes('onar') || text.includes('ticari');
+    }
     return false;
   })
   .slice(0, 3);

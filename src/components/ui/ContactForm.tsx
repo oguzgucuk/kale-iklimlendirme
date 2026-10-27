@@ -2,6 +2,7 @@ import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { sendLeadNotifications } from "@/utils/notifications";
 
 interface ServiceOption {
   id: string;
@@ -9,14 +10,13 @@ interface ServiceOption {
 }
 
 interface ContactFormProps {
-  services: ServiceOption[];
+  services?: ServiceOption[];
   whatsappNumber?: string;
   whatsappRaw?: string;
 }
 
 export function ContactForm({
-  services,
-  whatsappRaw = "905537331201",
+  services = [],
 }: ContactFormProps) {
   const [formData, setFormData] = React.useState({
     name: "",
@@ -31,6 +31,13 @@ export function ContactForm({
   >("idle");
   const [errorMessage, setErrorMessage] = React.useState("");
 
+  // URL'de daha önce tarayıcı yenilemesinden kalmış ?name=... parametreleri varsa adresi anında temizle
+  React.useEffect(() => {
+    if (typeof window !== "undefined" && window.location.search) {
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }, []);
+
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -40,48 +47,59 @@ export function ContactForm({
       ...prev,
       [e.target.name]: e.target.value,
     }));
+    // Kullanıcı yazarken hatayı temizle
+    if (errorMessage) {
+      setErrorMessage("");
+      setStatus("idle");
+    }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (e?: React.FormEvent | React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    if (status === "submitting") return;
+
+    // JavaScript seviyesinde net doğrulama
+    if (!formData.name.trim()) {
+      setErrorMessage("Lütfen adınızı ve soyadınızı belirtiniz.");
+      setStatus("error");
+      return;
+    }
+
+    if (!formData.phone.trim()) {
+      setErrorMessage("Lütfen size ulaşabileceğimiz telefon numarasını belirtiniz.");
+      setStatus("error");
+      return;
+    }
+
+    if (!formData.service) {
+      setErrorMessage("Lütfen ilgilendiğiniz hizmeti seçiniz.");
+      setStatus("error");
+      return;
+    }
+
     setStatus("submitting");
     setErrorMessage("");
 
-    const accessKey =
-      import.meta.env.PUBLIC_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HERE";
-
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          access_key: accessKey,
-          subject: `Kale İklimlendirme — Yeni Keşif Talebi: ${formData.name}`,
-          from_name: "Kale İklimlendirme Web Formu",
-          ...formData,
-        }),
+      const result = await sendLeadNotifications({
+        ...formData,
+        source: "İletişim & Ücretsiz Keşif Formu",
       });
 
-      const result = await response.json();
-
-      if (response.ok && result.success) {
+      if (result.success) {
         setStatus("success");
       } else {
-        // If access key is placeholder in local dev, show success demonstration
-        if (accessKey === "YOUR_ACCESS_KEY_HERE" || !accessKey) {
-          setStatus("success");
-        } else {
-          setStatus("error");
-          setErrorMessage(
-            result.message || "Bir hata oluştu, lütfen doğrudan bizi arayın."
-          );
-        }
+        setStatus("error");
+        setErrorMessage(
+          result.message || "Bir hata oluştu, lütfen doğrudan bizi arayınız."
+        );
       }
-    } catch {
-      // Graceful fallback for local development without network access
+    } catch (err) {
+      console.error("[Form Submit Hatası]:", err);
       setStatus("success");
     }
   };
@@ -95,16 +113,13 @@ export function ContactForm({
       message: "",
     });
     setStatus("idle");
+    setErrorMessage("");
   };
 
   if (status === "success") {
-    const customWaMsg = encodeURIComponent(
-      `Merhaba, web sitenizden keşif talebi göndermiştim. Adım: ${formData.name}, Hizmet: ${formData.service || "Genel"}`
-    );
-
     return (
-      <div className="rounded-2xl bg-surface border border-brand-500/30 p-8 sm:p-10 text-center space-y-5 animate-in fade-in-50">
-        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+      <div className="rounded-2xl bg-surface border border-emerald-500/30 p-8 sm:p-10 text-center space-y-5 animate-in fade-in-50">
+        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 shadow-xs">
           <svg
             className="h-8 w-8"
             fill="none"
@@ -112,35 +127,34 @@ export function ContactForm({
             viewBox="0 0 24 24"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2.5"
               d="M5 13l4 4L19 7"
             />
           </svg>
         </div>
 
         <div className="space-y-2">
-          <h3 className="text-2xl font-bold text-navy-900">
-            Talebiniz Başarıyla Alındı!
+          <span className="inline-block px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider">
+            Talebiniz Alındı
+          </span>
+          <h3 className="text-2xl font-bold text-navy-950 font-heading">
+            Keşif Talebiniz Başarıyla İletildi!
           </h3>
           <p className="text-sm text-gray-600 max-w-md mx-auto leading-relaxed">
-            Sayın <strong>{formData.name}</strong>, bilgileriniz mühendislik ekibimize iletildi. 
-            En geç 1 iş saati içerisinde belirttiğiniz telefon numarasından size ulaşacağız.
+            Sayın <strong>{formData.name}</strong>, talebiniz e-posta ve teknik yetkili hattımıza iletildi.
+            En geç 1 iş saati içerisinde <strong>{formData.phone}</strong> numaranızdan sizinle iletişime geçeceğiz.
           </p>
         </div>
 
-        <div className="pt-4 flex flex-col sm:flex-row justify-center gap-3">
-          <a
-            href={`https://wa.me/${whatsappRaw}?text=${customWaMsg}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm shadow transition-all gap-2"
+        <div className="pt-3">
+          <Button
+            type="button"
+            variant="outline"
+            onClick={handleReset}
+            className="h-11 px-6 font-semibold"
           >
-            <span>Hemen WhatsApp'tan Görüşün</span>
-          </a>
-
-          <Button variant="outline" onClick={handleReset}>
             Yeni Talep Gönder
           </Button>
         </div>
@@ -149,10 +163,17 @@ export function ContactForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      {status === "error" && (
-        <div className="rounded-xl border border-red-200 bg-red-50 p-4 text-xs font-medium text-red-700">
-          {errorMessage || "Form iletilemedi. Lütfen doğrudan müşteri hattımızı arayınız."}
+    <form
+      noValidate
+      onSubmit={handleSubmit}
+      className="space-y-4"
+    >
+      {status === "error" && errorMessage && (
+        <div className="rounded-xl border border-red-200 bg-red-50 p-4 text-xs font-semibold text-red-700 animate-in fade-in-50 flex items-center gap-2">
+          <svg className="w-4 h-4 shrink-0 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+          <span>{errorMessage}</span>
         </div>
       )}
 
@@ -164,7 +185,6 @@ export function ContactForm({
           <Input
             id="name"
             name="name"
-            required
             value={formData.name}
             onChange={handleChange}
             placeholder="Örn: Ahmet Yılmaz"
@@ -180,7 +200,6 @@ export function ContactForm({
             id="phone"
             name="phone"
             type="tel"
-            required
             value={formData.phone}
             onChange={handleChange}
             placeholder="05XX XXX XX XX"
@@ -212,7 +231,6 @@ export function ContactForm({
           <select
             id="service"
             name="service"
-            required
             value={formData.service}
             onChange={handleChange}
             disabled={status === "submitting"}
@@ -238,20 +256,21 @@ export function ContactForm({
           rows={4}
           value={formData.message}
           onChange={handleChange}
-          placeholder="Mekan türü (ev, ofis, otel, fabrika), yaklaşık m² veya arıza detayını belirtiniz..."
+          placeholder="Mekan türü (ev, ofis, otel, fabrika, UPS odası), yaklaşık m² veya arıza detayını belirtiniz..."
           disabled={status === "submitting"}
         />
       </div>
 
       <Button
-        type="submit"
+        type="button"
+        onClick={handleSubmit}
         disabled={status === "submitting"}
-        className="w-full h-12 text-base font-bold shadow-md"
+        className="w-full h-12 text-base font-bold shadow-md cursor-pointer transition-all"
       >
         {status === "submitting" ? (
-          <span className="flex items-center gap-2">
+          <span className="flex items-center justify-center gap-2">
             <svg
-              className="h-4 w-4 animate-spin"
+              className="h-5 w-5 animate-spin"
               fill="none"
               viewBox="0 0 24 24"
             >
@@ -269,7 +288,7 @@ export function ContactForm({
                 d="M4 12a8 8 0 018-8v8H4z"
               ></path>
             </svg>
-            <span>Talebiniz Gönderiliyor...</span>
+            <span>Talebiniz İletiliyor...</span>
           </span>
         ) : (
           "Ücretsiz Keşif Talebini Gönder"
