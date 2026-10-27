@@ -2,32 +2,33 @@
 
 > VRF Merkezi Sistemler, Klima Satışı, Profesyonel Montaj, Periyodik Bakım ve Altyapı Tesisat Mühendisliği
 
-Kale İklimlendirme; ev, ofis, plaza, otel, fabrika ve ticari binalar için iklimlendirme ve havalandırma mühendisliği çözümleri sunan uzman bir kuruluştur.
+Kale İklimlendirme; ev, ofis, plaza, otel, fabrika ve ticari binalar için iklimlendirme ve havalandırma mühendisliği çözümleri sunan uzman bir kuruluştur. İstanbul (Avrupa ve Anadolu), Kocaeli, Tekirdağ ve Bursa genelinde anahtar teslim proje, montaj, bakım ve acil arıza servisi sağlar.
+
+## Temel Hizmetlerimiz
+- [VRF Merkezi Sistem Projelendirme](https://www.kaleiklimlendirme.com.tr/hizmetler/vrf-merkezi-sistem-projelendirme/): Büyük yapılar, oteller ve iş merkezleri için tek dış üniteye bağlı çoklu iç ünite projelendirmesi, borulama hesabı ve devreye alma.
+- [Klima Satışı](https://www.kaleiklimlendirme.com.tr/hizmetler/klima-satisi/): Mekanın ısı kaybı ve kazanç analizine göre en doğru BTU ve kW kapasiteli inverter split ve ticari klimaların temini.
+- [Arıza, Bakım & Onarım Servisi](https://www.kaleiklimlendirme.com.tr/hizmetler/ariza-bakim-onarim/): 7/24 acil servis, gaz kaçağı tespiti, kimyasal hijyenik serpantin temizliği, kompresör ve elektronik kart revizyonu.
+- [Klima Altyapı Borulama](https://www.kaleiklimlendirme.com.tr/hizmetler/klima-altyapi/): İnşaat ve renovasyon aşamasındaki binalar için sıva altı bakır borulama, drenaj hattı ve sinyal kablolaması.
+- [UPS & Sistem Odası Soğutma](https://www.kaleiklimlendirme.com.tr/hizmetler/ups-sistem-odasi-sogutma/): Veri merkezleri ve sistem odaları için kesintisiz yedekli hassas klima ve iklimlendirme altyapısı.
+
+## Kurumsal & Portfolyo
+- [Ana Sayfa](https://www.kaleiklimlendirme.com.tr/): Kurumsal tanıtım, genel kapasite analizi ve hızlı keşif talebi.
+- [Referans Projelerimiz](https://www.kaleiklimlendirme.com.tr/projeler/): Tamamlanan kurumsal VRF, ticari klima ve konut altyapı referansları.
+- [Hakkımızda](https://www.kaleiklimlendirme.com.tr/hakkimizda/): 15+ yıllık sektörel deneyim, mühendislik vizyonu ve yetkili servis güvencesi.
+- [İletişim & Teklif Al](https://www.kaleiklimlendirme.com.tr/iletisim/): Doğrudan telefon, WhatsApp hattı ve ücretsiz keşif başvuru formu.
 
 ## İletişim Bilgileri
 - **Telefon & Acil Servis:** +90 553 733 12 01
 - **WhatsApp Danışma Hattı:** +90 553 733 12 01
 - **E-posta:** Kadirkale1201@gmail.com
 - **Adres:** Mühendisler Cad. No: 42, Sanayi Mah., Kağıthane / İstanbul, Türkiye
-- **Web Sitesi:** https://kaleiklimlendirme.com.tr
-- **Hizmet Verilen İller:** İstanbul (Avrupa ve Anadolu), Kocaeli, Tekirdağ, Bursa
+- **Hizmet Bölgeleri:** İstanbul (Avrupa ve Anadolu), Kocaeli, Tekirdağ, Bursa
 
-## Satış, Montaj ve Servisini Yaptığımız Lider Markalar
+## Satış ve Servisini Yaptığımız Lider Markalar
 - Gree (Global Klima Üreticisi)
 - Midea (VRF & Ticari İklimlendirme)
 - Samsung (DVM S & 360 Kaset Sistemleri)
 - Daikin (VRV & Bireysel Inverter Sistemler)
 - Arçelik (Kurumsal & Bireysel Klimalar)
 - Mitsubishi Electric (City Multi VRF Sistemleri)
-
-## Temel Hizmetlerimiz
-- **Klima Satışı:** Mekanın ısı kaybı ve kazanç analizine göre en doğru BTU ve kW kapasiteli inverter split ve ticari klimaların temini.
-- **VRF Merkezi Sistem Projelendirme:** Büyük yapılar, oteller ve iş merkezleri için tek dış üniteye bağlı çoklu iç ünite projelendirmesi, borulama hesabı ve devreye alma.
-- **Arıza, Bakım & Onarım Servisi:** 7/24 acil servis, gaz kaçağı tespiti, kimyasal hijyenik serpantin temizliği, kompresör ve elektronik kart revizyonu.
-- **Klima Altyapı (Tesisat) Hazırlığı:** İnşaat ve renovasyon aşamasındaki binalar için sıva altı bakır borulama, drenaj hattı ve sinyal kablolaması.
-
-## Neden Kale İklimlendirme?
-- Ücretsiz mühendislik keşfi ve kapasite raporlaması
-- Orijinal yedek parça ve üretici garantili montaj
-- 40 bar azot basınç testi ile sıfır kaçak garantisi
-- 7/24 nöbetçi teknik servis ekibi
+- Carrier (Ticari ve Bireysel Soğutma)
