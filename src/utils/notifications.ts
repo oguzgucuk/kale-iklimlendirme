@@ -20,7 +20,7 @@ export function formatWhatsAppMessage(data: LeadData): string {
     `🛠️ *İlgilenilen Hizmet:* ${data.service || "Genel İklimlendirme / Keşif"}`,
     `📝 *Talep / Detay:* ${data.message?.trim() || "Yerinde keşif ve kapasite analizi talep ediliyor."}`,
     "━━━━━━━━━━━━━━━━━━━━━━━━━",
-    `_Kaynak: ${data.source || "kaleiklimlendirme.com"} üzerinden iletilmiştir._`,
+    `_Kaynak: ${data.source || "kaleiklimlendirme.com.tr"} üzerinden iletilmiştir._`,
   ].join("\n");
 }
 

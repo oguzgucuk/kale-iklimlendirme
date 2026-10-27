@@ -6,7 +6,7 @@ import compressor from 'astro-compressor';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://kaleiklimlendirme.com',
+  site: 'https://kaleiklimlendirme.com.tr',
   trailingSlash: 'always',
   integrations: [
     react(),

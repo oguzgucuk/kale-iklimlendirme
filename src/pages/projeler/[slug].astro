@@ -40,7 +40,7 @@ const formattedDate = new Date(project.data.completedDate).toLocaleDateString('t
   month: 'long',
 });
 
-const projectUrl = `https://kaleiklimlendirme.com/projeler/${project.id}/`;
+const projectUrl = `https://kaleiklimlendirme.com.tr/projeler/${project.id}/`;
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -50,19 +50,19 @@ const structuredData = {
       isPartOf: { '@id': projectUrl },
       headline: project.data.title,
       description: project.data.summary,
-      image: project.data.coverImage ? `https://kaleiklimlendirme.com${project.data.coverImage}` : undefined,
+      image: project.data.coverImage ? `https://kaleiklimlendirme.com.tr${project.data.coverImage}` : undefined,
       datePublished: new Date(project.data.completedDate).toISOString(),
       author: {
         '@type': 'Organization',
         name: company.companyName,
-        url: 'https://kaleiklimlendirme.com/',
+        url: 'https://kaleiklimlendirme.com.tr/',
       },
       publisher: {
         '@type': 'Organization',
         name: company.companyName,
         logo: {
           '@type': 'ImageObject',
-          url: 'https://kaleiklimlendirme.com/images/brand/kale-logo.jpg',
+          url: 'https://kaleiklimlendirme.com.tr/images/brand/kale-logo.jpg',
         },
       },
     },
@@ -73,13 +73,13 @@ const structuredData = {
           '@type': 'ListItem',
           position: 1,
           name: 'Ana Sayfa',
-          item: 'https://kaleiklimlendirme.com/',
+          item: 'https://kaleiklimlendirme.com.tr/',
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Projelerimiz',
-          item: 'https://kaleiklimlendirme.com/projeler/',
+          item: 'https://kaleiklimlendirme.com.tr/projeler/',
         },
         {
           '@type': 'ListItem',

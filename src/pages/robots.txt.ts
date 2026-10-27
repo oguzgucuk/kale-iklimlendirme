@@ -4,7 +4,7 @@ const robotsTxt = `
 User-agent: *
 Allow: /
 
-Sitemap: https://kaleiklimlendirme.com/sitemap-index.xml
+Sitemap: https://kaleiklimlendirme.com.tr/sitemap-index.xml
 `.trim();
 
 export const GET: APIRoute = () => {
