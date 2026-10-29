@@ -56,7 +56,75 @@ const defaultLocalBusinessSchema = {
   })),
 };
 
-const jsonLd = structuredData || defaultLocalBusinessSchema;
+// Rich @graph schema for Homepage: WebSite, HVACBusiness, and SiteNavigationElement (encourages Google Sitelinks)
+const defaultGraphSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': 'https://kaleiklimlendirme.com.tr/#website',
+      url: 'https://kaleiklimlendirme.com.tr',
+      name: company.companyName,
+      description: company.description,
+      inLanguage: 'tr-TR',
+    },
+    {
+      '@id': 'https://kaleiklimlendirme.com.tr/#organization',
+      ...defaultLocalBusinessSchema,
+    },
+    {
+      '@type': 'ItemList',
+      '@id': 'https://kaleiklimlendirme.com.tr/#navigation',
+      name: 'Ana Menü ve Hizmet Kategorileri',
+      itemListElement: [
+        {
+          '@type': 'SiteNavigationElement',
+          position: 1,
+          name: 'Hizmetlerimiz',
+          url: 'https://kaleiklimlendirme.com.tr/hizmetler/',
+        },
+        {
+          '@type': 'SiteNavigationElement',
+          position: 2,
+          name: 'VRF Merkezi Sistemler',
+          url: 'https://kaleiklimlendirme.com.tr/hizmetler/vrf-merkezi-sistem-projelendirme/',
+        },
+        {
+          '@type': 'SiteNavigationElement',
+          position: 3,
+          name: 'Klima Satışı',
+          url: 'https://kaleiklimlendirme.com.tr/hizmetler/klima-satisi/',
+        },
+        {
+          '@type': 'SiteNavigationElement',
+          position: 4,
+          name: 'Arıza, Bakım & Onarım',
+          url: 'https://kaleiklimlendirme.com.tr/hizmetler/ariza-bakim-onarim/',
+        },
+        {
+          '@type': 'SiteNavigationElement',
+          position: 5,
+          name: 'Referans Projelerimiz',
+          url: 'https://kaleiklimlendirme.com.tr/projeler/',
+        },
+        {
+          '@type': 'SiteNavigationElement',
+          position: 6,
+          name: 'Hakkımızda',
+          url: 'https://kaleiklimlendirme.com.tr/hakkimizda/',
+        },
+        {
+          '@type': 'SiteNavigationElement',
+          position: 7,
+          name: 'İletişim & Keşif Talebi',
+          url: 'https://kaleiklimlendirme.com.tr/iletisim/',
+        },
+      ],
+    },
+  ],
+};
+
+const jsonLd = structuredData || defaultGraphSchema;
 ---
 
 <!-- Global Metadata -->
@@ -66,7 +134,11 @@ const jsonLd = structuredData || defaultLocalBusinessSchema;
 <meta name="generator" content={Astro.generator} />
 
 <link rel="canonical" href={canonicalURL} />
-<link rel="icon" href="/favicon.ico" sizes="any" />
+
+<!-- Favicons & Touch Icons (Google Search requires multiple of 48px square) -->
+<link rel="icon" href="/favicon.ico" sizes="48x48 32x32 16x16" />
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
